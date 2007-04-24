@@ -1,0 +1,6 @@
+; JPrint.def : Declares the module parameters for the DLL.
+
+LIBRARY      "JPrintd"
+
+EXPORTS
+    ; Explicit exports can go here

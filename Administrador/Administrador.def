@@ -1,0 +1,14 @@
+; Administrador.def : Declares the module parameters for the DLL.
+
+LIBRARY      "Administrador"
+
+EXPORTS
+LoadFunciones		@1
+InitAdministrador	@2
+InitPaises			@3
+InitDepartamentos	@4
+InitUsuarios		@5
+
+; Explicit exports can go here
+DllRegisterServer   @10 PRIVATE
+DllUnregisterServer	@11 PRIVATE

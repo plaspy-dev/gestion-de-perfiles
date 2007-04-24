@@ -1,0 +1,6 @@
+; Conector.def : Declares the module parameters for the DLL.
+
+LIBRARY      "Conector"
+
+EXPORTS
+    ; Explicit exports can go here

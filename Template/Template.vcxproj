@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="Current">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <ProjectGuid>{7810A251-3CB3-4E2B-A5A4-8827F24B8AE3}</ProjectGuid>
+    <RootNamespace>Template</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>18.0.12106.202</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\Template\$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>Template</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\Template\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>Template</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WINVER=0x0601;_WIN32_WINNT=0x0601;_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalOptions>/Zc:forScope- /wd4430 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(SolutionDir)compat;$(ProjectDir);$(SolutionDir)vendor\include;$(MySqlSdkDir);$(MySqlSdkDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ProcessorNumber>4</ProcessorNumber>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0c0a</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>$(OutDir);$(MySqlSdkDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <PreprocessorDefinitions>WINVER=0x0601;_WIN32_WINNT=0x0601;_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions>/Zc:forScope- /wd4430 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(SolutionDir)compat;$(ProjectDir);$(SolutionDir)vendor\include;$(MySqlSdkDir);$(MySqlSdkDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ProcessorNumber>4</ProcessorNumber>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0c0a</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>$(OutDir);$(MySqlSdkDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="BusquedaView.cpp" />
+    <ClCompile Include="errorreport\ExceptionAttacher.cpp" />
+    <ClCompile Include="errorreport\ExceptionHandler.cpp" />
+    <ClCompile Include="errorreport\GetWinVer.cpp" />
+    <ClCompile Include="errorreport\MiniVersion.cpp" />
+    <ClCompile Include="EstudiosView.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="OficinaView.cpp" />
+    <ClCompile Include="ResidenciaView.cpp" />
+    <ClCompile Include="SeguimientoView.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Template.cpp" />
+    <ClCompile Include="TemplateView.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BusquedaView.h" />
+    <ClInclude Include="errorreport\CrashFileNames.h" />
+    <ClInclude Include="errorreport\Dbghelp.h" />
+    <ClInclude Include="errorreport\ExceptionHandler.h" />
+    <ClInclude Include="errorreport\GetWinVer.h" />
+    <ClInclude Include="errorreport\MiniVersion.h" />
+    <ClInclude Include="EstudiosView.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="OficinaView.h" />
+    <ClInclude Include="ResidenciaView.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="SeguimientoView.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Template.h" />
+    <ClInclude Include="TemplateView.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\asistente.bmp" />
+    <Image Include="res\loading\loading0001.bmp" />
+    <Image Include="res\loading\loading0002.bmp" />
+    <Image Include="res\loading\loading0003.bmp" />
+    <Image Include="res\loading\loading0004.bmp" />
+    <Image Include="res\loading\loading0005.bmp" />
+    <Image Include="res\loading\loading0006.bmp" />
+    <Image Include="res\loading\loading0007.bmp" />
+    <Image Include="res\loading\loading0008.bmp" />
+    <Image Include="res\loading\loading0009.bmp" />
+    <Image Include="res\loading\loading0010.bmp" />
+    <Image Include="res\loading\loading0011.bmp" />
+    <Image Include="res\Template.ico" />
+    <Image Include="res\TemplateDoc.ico" />
+    <Image Include="res\Toolbar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Template.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Template.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\vendor\include\Componentes\Componentes.vcxproj">
+      <Project>{04F955E5-F846-431D-9CEC-D35BA071A51C}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vendor\include\Conector\Conector.vcxproj">
+      <Project>{0B19BADA-CF07-45DD-ADC9-3B6920174E19}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vendor\include\IOFile\IOFile.vcxproj">
+      <Project>{DF67D1C5-251E-428C-BF56-6CA742FCA08D}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vendor\include\JLang\JLang.vcxproj">
+      <Project>{63916F02-80DE-4617-94DA-E266148F85C1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vendor\include\JPrint\JPrint.vcxproj">
+      <Project>{23FD442F-524C-42C8-BF28-B7835BD47309}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vendor\include\LAppc\LAppc.vcxproj">
+      <Project>{FA2E85EF-3871-4C5D-815E-5BBDCCDE7EA3}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="Template.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

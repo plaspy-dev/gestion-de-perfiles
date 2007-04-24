@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="Current">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <ProjectGuid>{DF67D1C5-251E-428C-BF56-6CA742FCA08D}</ProjectGuid>
+    <RootNamespace>IOFile</RootNamespace>
+    <Keyword>MFCDLLProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC70.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC70.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>18.0.12106.202</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\IOFile\$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>IOFiled</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\IOFile\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>IOFile</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)compat;$(ProjectDir);$(SolutionDir)vendor\include;$(MySqlSdkDir);$(MySqlSdkDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINVER=0x0601;_WIN32_WINNT=0x0601;_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;_DEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalOptions>/Zc:forScope- /wd4430 %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ProcessorNumber>4</ProcessorNumber>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ModuleDefinitionFile>.\IOFiled.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName)d.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>$(OutDir)IOFiled.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>$(OutDir);$(MySqlSdkDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir)compat;$(ProjectDir);$(SolutionDir)vendor\include;$(MySqlSdkDir);$(MySqlSdkDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINVER=0x0601;_WIN32_WINNT=0x0601;_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions>/Zc:forScope- /wd4430 %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ProcessorNumber>4</ProcessorNumber>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ModuleDefinitionFile>.\IOFile.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>$(OutDir)IOFile.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>$(OutDir);$(MySqlSdkDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\IOFile\Defender.cpp" />
+    <ClCompile Include="..\..\src\IOFile\DlgElementos.cpp" />
+    <ClCompile Include="..\..\src\IOFile\DlgExportar.cpp" />
+    <ClCompile Include="..\..\src\IOFile\DlgImportar.cpp" />
+    <ClCompile Include="..\..\src\IOFile\Export.cpp" />
+    <ClCompile Include="..\..\src\IOFile\FileInfo.cpp" />
+    <ClCompile Include="..\..\src\IOFile\FileWatch.cpp" />
+    <ClCompile Include="..\..\src\IOFile\HtmlFile.cpp" />
+    <ClCompile Include="..\..\src\IOFile\ImageDataObject.cpp" />
+    <ClCompile Include="..\..\src\IOFile\Import.cpp" />
+    <ClCompile Include="..\..\src\IOFile\ImportThread.cpp" />
+    <ClCompile Include="..\..\src\IOFile\iofile.cpp" />
+    <ClCompile Include="..\..\src\IOFile\LicenceDlg.cpp" />
+    <ClCompile Include="..\..\src\IOFile\mexcel.cpp" />
+    <ClCompile Include="..\..\src\IOFile\OleRichEditCtrl.cpp" />
+    <ClCompile Include="..\..\src\IOFile\ScreenSaverDE.cpp" />
+    <ClCompile Include="..\..\src\IOFile\stdafx.cpp" />
+    <ClCompile Include="..\..\src\IOFile\TonyJpegDecoder.cpp" />
+    <ClCompile Include="..\..\src\IOFile\TonyJpegEncoder.cpp" />
+    <ClCompile Include="..\..\src\IOFile\XUnzip.cpp" />
+    <ClCompile Include="..\..\src\IOFile\XZip.cpp" />
+    <ClCompile Include="DlgProgreso.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Defender.h" />
+    <ClInclude Include="DlgElementos.h" />
+    <ClInclude Include="DlgExportar.h" />
+    <ClInclude Include="DlgImportar.h" />
+    <ClInclude Include="DlgProgreso.h" />
+    <ClInclude Include="Export.h" />
+    <ClInclude Include="FileInfo.h" />
+    <ClInclude Include="FileWatch.h" />
+    <ClInclude Include="HtmlFile.h" />
+    <ClInclude Include="ImageDataObject.h" />
+    <ClInclude Include="Import.h" />
+    <ClInclude Include="ImportThread.h" />
+    <ClInclude Include="IOFile.h" />
+    <ClInclude Include="LicenceDlg.h" />
+    <ClInclude Include="mexcel.h" />
+    <ClInclude Include="OleRichEditCtrl.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="ScreenSaverDE.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TonyJpegDecoder.h" />
+    <ClInclude Include="TonyJpegEncoder.h" />
+    <ClInclude Include="XUnzip.h" />
+    <ClInclude Include="XZip.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="IOFile.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\IOFile.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\logo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LAppc\LAppc.vcxproj">
+      <Project>{FA2E85EF-3871-4C5D-815E-5BBDCCDE7EA3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Componentes\Componentes.vcxproj">
+      <Project>{04F955E5-F846-431D-9CEC-D35BA071A51C}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Conector\Conector.vcxproj">
+      <Project>{0B19BADA-CF07-45DD-ADC9-3B6920174E19}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="IOFile.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

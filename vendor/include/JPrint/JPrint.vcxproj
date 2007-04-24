@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="Current">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <ProjectGuid>{23FD442F-524C-42C8-BF28-B7835BD47309}</ProjectGuid>
+    <RootNamespace>JPrint</RootNamespace>
+    <Keyword>MFCDLLProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>18.0.12106.202</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\JPrint\$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\JPrint\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)compat;$(ProjectDir);$(SolutionDir)vendor\include;$(MySqlSdkDir);$(MySqlSdkDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINVER=0x0601;_WIN32_WINNT=0x0601;_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;_DEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalOptions>/Zc:forScope- /wd4430 %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ProcessorNumber>4</ProcessorNumber>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ModuleDefinitionFile>.\JPrintd.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>$(OutDir);$(MySqlSdkDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)compat;$(ProjectDir);$(SolutionDir)vendor\include;$(MySqlSdkDir);$(MySqlSdkDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINVER=0x0601;_WIN32_WINNT=0x0601;_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions>/Zc:forScope- /wd4430 %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ProcessorNumber>4</ProcessorNumber>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <ModuleDefinitionFile>.\JPrint.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>$(OutDir);$(MySqlSdkDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\JPrint\BorderLine.cpp" />
+    <ClCompile Include="..\..\src\JPrint\Column.cpp" />
+    <ClCompile Include="..\..\src\JPrint\DrawBox.cpp" />
+    <ClCompile Include="..\..\src\JPrint\DrawEllipse.cpp" />
+    <ClCompile Include="..\..\src\JPrint\DrawField.cpp" />
+    <ClCompile Include="..\..\src\JPrint\DrawGrid.cpp" />
+    <ClCompile Include="..\..\src\JPrint\DrawLabel.cpp" />
+    <ClCompile Include="..\..\src\JPrint\DrawLine.cpp" />
+    <ClCompile Include="..\..\src\JPrint\DrawObject.cpp" />
+    <ClCompile Include="..\..\src\JPrint\DrawPicture.cpp" />
+    <ClCompile Include="..\..\src\JPrint\FieldFactory.cpp" />
+    <ClCompile Include="..\..\src\JPrint\HtmlPrint.cpp" />
+    <ClCompile Include="..\..\src\JPrint\JPrint.cpp" />
+    <ClCompile Include="..\..\src\JPrint\ListDemoViewPrint.cpp" />
+    <ClCompile Include="..\..\src\JPrint\NumberClass.cpp" />
+    <ClCompile Include="..\..\src\JPrint\PrintRTF.cpp" />
+    <ClCompile Include="..\..\src\JPrint\PrintTemplate.cpp" />
+    <ClCompile Include="..\..\src\JPrint\ReportGenerator.cpp" />
+    <ClCompile Include="..\..\src\JPrint\stdafx.cpp" />
+    <ClCompile Include="..\..\src\JPrint\StringHelpers.cpp" />
+    <ClCompile Include="..\..\src\JPrint\TextFile\TextFile.cpp" />
+    <ClCompile Include="..\..\src\JPrint\Tokenizer.cpp" />
+    <ClCompile Include="..\..\src\JPrint\TreeListPrint.cpp" />
+    <ClCompile Include="..\..\src\JPrint\UnitConversion.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="JPrint.def" />
+    <None Include="res\JPrint.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BorderLine.h" />
+    <ClInclude Include="Column.h" />
+    <ClInclude Include="Container.h" />
+    <ClInclude Include="ContainerArray.h" />
+    <ClInclude Include="DoublePoint.h" />
+    <ClInclude Include="DoubleRect.h" />
+    <ClInclude Include="DrawBox.h" />
+    <ClInclude Include="DrawEllipse.h" />
+    <ClInclude Include="DrawField.h" />
+    <ClInclude Include="DrawGrid.h" />
+    <ClInclude Include="DrawLabel.h" />
+    <ClInclude Include="DrawLine.h" />
+    <ClInclude Include="DrawObject.h" />
+    <ClInclude Include="DrawPicture.h" />
+    <ClInclude Include="FieldFactory.h" />
+    <ClInclude Include="HtmlPrint.h" />
+    <ClInclude Include="JPrint.h" />
+    <ClInclude Include="listdemoviewprint.h" />
+    <ClInclude Include="NumberClass.h" />
+    <ClInclude Include="PrintRTF.h" />
+    <ClInclude Include="printtemplate.h" />
+    <ClInclude Include="ReportGenerator.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StringHelpers.h" />
+    <ClInclude Include="TContainer.h" />
+    <ClInclude Include="TextFile\TextFile.h" />
+    <ClInclude Include="Tokenizer.h" />
+    <ClInclude Include="TreeListPrint.h" />
+    <ClInclude Include="UnitConversion.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="JPrint.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LAppc\LAppc.vcxproj">
+      <Project>{FA2E85EF-3871-4C5D-815E-5BBDCCDE7EA3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Componentes\Componentes.vcxproj">
+      <Project>{04F955E5-F846-431D-9CEC-D35BA071A51C}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\IOFile\IOFile.vcxproj">
+      <Project>{DF67D1C5-251E-428C-BF56-6CA742FCA08D}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="JPrint.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

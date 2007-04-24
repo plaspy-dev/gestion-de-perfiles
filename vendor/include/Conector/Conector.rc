@@ -1,0 +1,357 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,0,0,1
+ PRODUCTVERSION 3,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "240a04b0"
+        BEGIN
+            VALUE "CompanyName", "SDG"
+            VALUE "FileDescription", "Conector a MySQL"
+            VALUE "FileVersion", "3.0.0.1"
+            VALUE "InternalName", "Conector.dll"
+            VALUE "LegalCopyright", "SDG Reservados todos los derechos."
+            VALUE "OriginalFilename", "Conector.dll"
+            VALUE "ProductVersion", "3.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x240a, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOGCONECTAR DIALOGEX 0, 0, 138, 78
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Ingreso"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDITNOMBRE,47,7,84,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDITCONTRASENA,47,23,84,14,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&Aceptar",IDOK,13,52,50,14
+    PUSHBUTTON      "&Cancelar",IDCANCEL,73,52,50,14
+    LTEXT           "Usuario",IDC_STATICUSUARIO,7,9,25,8
+    LTEXT           "Contraseña",IDC_STATICCONTRASENA,7,27,38,8
+    LTEXT           "Static",IDC_STATICAYUDA,2,67,133,8,SS_ENDELLIPSIS
+    CONTROL         "Recordar contraseña",IDC_CRECORDAR,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,48,40,83,10
+END
+
+IDD_DIALOGCONEXIONES DIALOGEX 0, 0, 193, 201
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Bases de Datos"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDITSERVIDOR,78,67,107,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDITNOMBREDB,101,84,84,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDITPUERTO,138,111,47,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDITREINTENTOS,138,126,47,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EARCHIVO,37,143,128,14,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_BEXAMINAR,167,143,18,14
+    DEFPUSHBUTTON   "&Aceptar",IDOK,43,174,50,14
+    PUSHBUTTON      "&Cancelar",IDCANCEL,102,174,50,14
+    CONTROL         "",IDC_LISTDB,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,179,56
+    LTEXT           "Nombre del servidor",IDC_STATIC,7,69,65,8
+    LTEXT           "Puerto",IDC_STATIC,35,114,22,8
+    LTEXT           "Nombre de la Base de datos",IDC_STATIC,7,86,90,8
+    LTEXT           "Avanzado",IDC_STATICPRIMERO,7,102,179,8
+    LTEXT           "Avanzado",IDC_STATICSEGUNDO,7,161,179,8
+    LTEXT           "Reintentos",IDC_STATIC,35,129,36,8
+    LTEXT           "Almacén",IDC_SARCHIVO,7,145,28,8
+END
+
+IDD_PBIENVENIDO DIALOGEX 0, 0, 284, 154
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Bienvenido"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Bienvenido al asistente de inicialización de tablas MySQL para el uso de . Si ya tiene las MySQL configurado, este proceso NO sobrescribirá las tablas existentes.",IDC_SBIENVENIDO,7,7,270,28
+    CONTROL         "No tengo un servidor.",IDC_RNO,"Button",BS_AUTORADIOBUTTON | WS_GROUP,57,63,174,10
+    CONTROL         "Si tengo un servidor.",IDC_RSERVIDOR,"Button",BS_AUTORADIOBUTTON,57,80,157,10
+    CONTROL         "Deseo configurar el servidor.",IDC_RCONFIGURAR,"Button",BS_AUTORADIOBUTTON,57,98,188,10
+END
+
+IDD_PPSERVIDOR DIALOGEX 0, 0, 210, 154
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Servidor MySQL"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Servidor MySQL",IDC_STATIC,30,37,57,8
+    EDITTEXT        IDC_ESERVIDOR,92,35,90,14,ES_AUTOHSCROLL
+    LTEXT           "Usuario",IDC_STATIC,30,78,25,8
+    EDITTEXT        IDC_EUSUARIO,92,75,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ECONTRASENA,92,118,40,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Contraseña",IDC_STATIC,30,121,38,8
+    PUSHBUTTON      "Avanzado",IDC_BAVANZADO,153,133,50,14
+    LTEXT           "Es el equipo donde se encuentra la base de datos. Para uso local es “localhost” de lo contrario coloque la dirección IP o nombre del equipo por ejemplo: 192.0.2.10 o mysql-demo.example.test",IDC_STATIC,7,7,196,25
+    LTEXT           "Es el usuario principal de MySQL por lo general “root” u otro usuario con privilegios para crear tablas.",IDC_STATIC,7,54,196,17
+    LTEXT           "La contraseña del usuario de MySQL, aquella proporcionada a la hora de instalar la base de datos.",IDC_STATIC,9,93,194,19
+END
+
+IDD_PPUSUARIO DIALOGEX 0, 0, 210, 154
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Usuario"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Deseo configurar un usuario administrador para el uso de .",IDC_SMENSAJE,40,47,145,18,SS_NOTIFY
+    CONTROL         "",IDC_CCONFIGURAR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,25,49,13,14
+    LTEXT           "Usuario",IDC_STATIC,40,73,25,8
+    EDITTEXT        IDC_EUSUARIO,97,70,63,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ECONTRASENA,97,87,63,14,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_ECONFIRMAR,97,103,63,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Contraseña",IDC_STATIC,40,90,38,8
+    LTEXT           "Confirmar",IDC_STATIC,40,106,32,8
+    LTEXT           "",IDC_SMENSAJEU,7,139,196,8
+    LTEXT           "Configurar el usuario administrador de . Si ya tiene un usuario administrador omita este paso.",IDC_SAYUDA,8,10,191,19
+    LTEXT           "Este usuario es diferente al administrador de la base de datos.",IDC_STATIC,7,31,201,8
+END
+
+IDD_PPTERMINAR DIALOGEX 0, 0, 265, 154
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Terminar"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Gracias por usar .\rPara terminar el proceso haga clic en finalizar. ",IDC_SFINALIZAR,34,7,194,18
+    CONTROL         "Usar este servidor para conectarme.",IDC_CUSAR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,60,30,133,10
+    CHECKBOX        "Conectando a la base de datos.",IDC_CCONECTAR,60,66,137,10,NOT WS_VISIBLE
+    CHECKBOX        "Configurando base de datos.",IDC_CCONFIGURAR,60,80,137,10,NOT WS_VISIBLE
+    CHECKBOX        "Creando usuario de .",IDC_CUSUARIO,60,94,137,10,NOT WS_VISIBLE
+    CHECKBOX        "Guardando la configuración.",IDC_CGUARDAR,60,108,137,10,NOT WS_VISIBLE
+    GROUPBOX        "Realizando las acciones solicitadas",IDC_SACCIONES,44,49,168,77,NOT WS_VISIBLE
+    LTEXT           "",IDC_SMENSAJE,34,137,194,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOGCONECTAR, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 74
+    END
+
+    IDD_DIALOGCONEXIONES, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 174
+    END
+
+    IDD_PBIENVENIDO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 277
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 147
+    END
+
+    IDD_PPUSUARIO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 203
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 147
+    END
+
+    IDD_PPTERMINAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 258
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 147
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Spanish (Colombia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESO)
+#ifdef _WIN32
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_COLOMBIA
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DAVANZADO DIALOGEX 0, 0, 134, 148
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Avanzado"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Aceptar",IDOK,15,127,50,14
+    PUSHBUTTON      "Cancelar",IDCANCEL,69,127,50,14
+    LTEXT           "Base de datos",IDC_STATIC,25,65,46,8
+    LTEXT           "Puerto",IDC_STATIC,25,108,22,8
+    EDITTEXT        IDC_EBASEDEDATOS,87,62,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EPUERTO,87,107,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Si necesita cambiar estas opciones y no las conoce, consulte al administrador del sistema.",IDC_STATIC,9,9,118,26
+    LTEXT           "Se refiere al nombre de la base de datos a crear por lo general ‘’.",IDC_SNOMBREDATA,8,40,122,16
+    LTEXT           "Se refiere al puerto por donde se va a conectar a la base de datos generalmente ‘3306’.",IDC_STATIC,9,79,115,24
+END
+
+IDD_SERVIDORSOLOPP DIALOGEX 0, 0, 260, 161
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Servidor MySQL"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LTEXT           "Servidor",IDC_STATIC,32,79,57,8
+    EDITTEXT        IDC_ESERVIDOR,94,77,90,14,ES_AUTOHSCROLL
+    LTEXT           "Es el equipo donde se encuentra la base de datos. Para uso local es “localhost” de lo contrario coloque la dirección IP o nombre del equipo por ejemplo: 192.0.2.10 o mysql-demo.example.test",IDC_STATIC,7,7,246,25
+END
+
+IDD_DWEBPASSWORD DIALOGEX 0, 0, 272, 129
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Su contraseña ha expirado."
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EWEBBROWSER,0,0,271,128,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DAVANZADO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 127
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 141
+    END
+
+    IDD_SERVIDORSOLOPP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 253
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 154
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\Conector.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BASISTENTE          BITMAP                  "res\\asistente.bmp"
+#endif    // Spanish (Colombia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\Conector.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

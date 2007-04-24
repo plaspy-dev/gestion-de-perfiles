@@ -1,0 +1,6 @@
+; JLang.def : Declares the module parameters for the DLL.
+
+LIBRARY      "JLangd"
+
+EXPORTS
+    ; Explicit exports can go here

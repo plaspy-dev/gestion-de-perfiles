@@ -1,0 +1,347 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="Current">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <ProjectGuid>{04F955E5-F846-431D-9CEC-D35BA071A51C}</ProjectGuid>
+    <RootNamespace>Componentes</RootNamespace>
+    <Keyword>MFCDLLProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseOfAtl>Static</UseOfAtl>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC70.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC70.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>18.0.12106.202</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\Componentes\$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>Componentesd</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\Componentes\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>Componentes</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)compat;$(ProjectDir);$(SolutionDir)vendor\include;$(MySqlSdkDir);$(MySqlSdkDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINVER=0x0601;_WIN32_WINNT=0x0601;_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;_DEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalOptions>/Zc:forScope- /wd4430 %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ProcessorNumber>4</ProcessorNumber>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ModuleDefinitionFile>.\Componentesd.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName)d.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>$(OutDir)Componentesd.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>$(OutDir);$(MySqlSdkDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir)compat;$(ProjectDir);$(SolutionDir)vendor\include;$(MySqlSdkDir);$(MySqlSdkDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINVER=0x0601;_WIN32_WINNT=0x0601;_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions>/Zc:forScope- /wd4430 %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ProcessorNumber>4</ProcessorNumber>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ModuleDefinitionFile>.\Componentes.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>$(OutDir)Componentes.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>$(OutDir);$(MySqlSdkDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\componentes\AboutDlg.cpp" />
+    <ClCompile Include="..\..\src\componentes\akTrayIcon.cpp" />
+    <ClCompile Include="..\..\src\componentes\BitmapPicture.cpp" />
+    <ClCompile Include="..\..\src\componentes\ButtonXP.cpp" />
+    <ClCompile Include="..\..\src\componentes\CheckListBoxEx.cpp" />
+    <ClCompile Include="..\..\src\componentes\Color.cpp" />
+    <ClCompile Include="..\..\src\componentes\ColorButton.cpp" />
+    <ClCompile Include="..\..\src\componentes\COLORLISTBOX.CPP" />
+    <ClCompile Include="..\..\src\componentes\ColourPopup.cpp" />
+    <ClCompile Include="..\..\src\componentes\ComboBoxXP.cpp" />
+    <ClCompile Include="..\..\src\componentes\Componentes.cpp" />
+    <ClCompile Include="..\..\src\componentes\ComponentesDoc.cpp" />
+    <ClCompile Include="..\..\src\componentes\Draw.cpp" />
+    <ClCompile Include="..\..\src\componentes\EditAyuda.cpp" />
+    <ClCompile Include="..\..\src\componentes\EditFloat.cpp" />
+    <ClCompile Include="..\..\src\componentes\EditTiempo.cpp" />
+    <ClCompile Include="..\..\src\componentes\EditXP.cpp" />
+    <ClCompile Include="..\..\src\componentes\EnBitmap.cpp" />
+    <ClCompile Include="..\..\src\componentes\extras\MiscelaneosEx.cpp" />
+    <ClCompile Include="..\..\src\componentes\extras\TreeNavBar.cpp" />
+    <ClCompile Include="..\..\src\componentes\FadeWnd.cpp" />
+    <ClCompile Include="..\..\src\componentes\GuiControlBar.cpp" />
+    <ClCompile Include="..\..\src\componentes\GuiDockToolBarEx.cpp" />
+    <ClCompile Include="..\..\src\componentes\hilos\threadauto.cpp" />
+    <ClCompile Include="..\..\src\componentes\HTMLCtrl.cpp">
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <ClCompile Include="..\..\src\componentes\HyperLink.cpp" />
+    <ClCompile Include="..\..\src\componentes\ImageProcessors.cpp" />
+    <ClCompile Include="..\..\src\componentes\INFOBARCTRL.CPP" />
+    <ClCompile Include="..\..\src\componentes\ItemList.cpp" />
+    <ClCompile Include="..\..\src\componentes\KCSideBannerWnd.cpp" />
+    <ClCompile Include="..\..\src\componentes\ListBoxXP.cpp" />
+    <ClCompile Include="..\..\src\componentes\ListCtrlSize.cpp" />
+    <ClCompile Include="..\..\src\componentes\logomdi.cpp" />
+    <ClCompile Include="..\..\src\componentes\MasEdit.cpp" />
+    <ClCompile Include="..\..\src\componentes\MatrixStatic.cpp" />
+    <ClCompile Include="..\..\src\componentes\mditabs\LBSpinButtonCtrl.cpp" />
+    <ClCompile Include="..\..\src\componentes\mditabs\MDITabs.cpp" />
+    <ClCompile Include="..\..\src\componentes\MsgBoxHook.cpp" />
+    <ClCompile Include="..\..\src\componentes\MyListCtrl.cpp" />
+    <ClCompile Include="..\..\src\componentes\nbMessageBox.cpp" />
+    <ClCompile Include="..\..\src\componentes\newmenu\DialogXP.cpp" />
+    <ClCompile Include="..\..\src\componentes\newmenu\MDIChildWndXP.cpp" />
+    <ClCompile Include="..\..\src\componentes\newmenu\MDIFrameWndXP.cpp" />
+    <ClCompile Include="..\..\src\componentes\newmenu\MultiDocTemplateXP.cpp" />
+    <ClCompile Include="..\..\src\componentes\newmenu\NewMenu.cpp" />
+    <ClCompile Include="..\..\src\componentes\ResizableDialog.cpp" />
+    <ClCompile Include="..\..\src\componentes\ResizableFormView.cpp" />
+    <ClCompile Include="..\..\src\componentes\ResizableGrip.cpp" />
+    <ClCompile Include="..\..\src\componentes\ResizableLayout.cpp" />
+    <ClCompile Include="..\..\src\componentes\ResizableMinMax.cpp" />
+    <ClCompile Include="..\..\src\componentes\ResizableState.cpp" />
+    <ClCompile Include="..\..\src\componentes\separador\CHECKBOXSEPARATOR.CPP" />
+    <ClCompile Include="..\..\src\componentes\separador\SECTIONSEPARATOR.CPP" />
+    <ClCompile Include="..\..\src\componentes\separador\SEPARATOR.CPP" />
+    <ClCompile Include="..\..\src\componentes\separador\STATICSEPARATOR.CPP" />
+    <ClCompile Include="..\..\src\componentes\separador\VISUALSTYLESXP.CPP" />
+    <ClCompile Include="..\..\src\componentes\shockwaveflash1.cpp" />
+    <ClCompile Include="..\..\src\componentes\SortClass.cpp" />
+    <ClCompile Include="..\..\src\componentes\SortHeaderCtrl.cpp" />
+    <ClCompile Include="..\..\src\componentes\splashscreenex.cpp" />
+    <ClCompile Include="..\..\src\componentes\SplitterControl.cpp" />
+    <ClCompile Include="..\..\src\componentes\StatusBarXP.cpp" />
+    <ClCompile Include="..\..\src\componentes\stdafx.cpp" />
+    <ClCompile Include="..\..\src\componentes\TabCtrlSSL.cpp" />
+    <ClCompile Include="..\..\src\componentes\TabPageSSL.cpp" />
+    <ClCompile Include="..\..\src\componentes\TextProgressCtrl.cpp" />
+    <ClCompile Include="..\..\src\componentes\ToolBarXP.cpp" />
+    <ClCompile Include="..\..\src\componentes\Tools.cpp" />
+    <ClCompile Include="..\..\src\componentes\TreeCtrlXP.cpp" />
+    <ClCompile Include="..\..\src\componentes\treelistctrl\ThreadTreeStat.cpp" />
+    <ClCompile Include="..\..\src\componentes\treelistctrl\TreeListColumnInfo.cpp" />
+    <ClCompile Include="..\..\src\componentes\treelistctrl\TreeListCtrl.cpp" />
+    <ClCompile Include="..\..\src\componentes\treelistctrl\TreeListHeaderCtrl.cpp" />
+    <ClCompile Include="..\..\src\componentes\treelistctrl\TreeListItem.cpp" />
+    <ClCompile Include="..\..\src\componentes\VListCtrl.cpp" />
+    <ClCompile Include="..\..\src\componentes\WinAppEx.cpp" />
+    <ClCompile Include="..\..\src\componentes\XInfoTip.cpp" />
+    <ClCompile Include="..\..\src\componentes\xmlreader.cpp" />
+    <ClCompile Include="..\..\src\componentes\xmlwriter.cpp" />
+    <ClCompile Include="..\..\src\componentes\XStatusBar.cpp" />
+    <ClCompile Include="..\..\src\componentes\XTabCtrl.cpp" />
+    <ClCompile Include="TreeListItemMap.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Componentes.def" />
+    <None Include="res\Componentes.rc2" />
+    <None Include="res\CUR_VERT.CUR" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AboutDlg.h" />
+    <ClInclude Include="akTrayIcon.h" />
+    <ClInclude Include="BitmapPicture.h" />
+    <ClInclude Include="ButtonXP.h" />
+    <ClInclude Include="CheckListBoxEx.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="ColorButton.h" />
+    <ClInclude Include="COLORLISTBOX.H" />
+    <ClInclude Include="ColourPopup.h" />
+    <ClInclude Include="ComboBoxXP.h" />
+    <ClInclude Include="Componentes.h" />
+    <ClInclude Include="ComponentesDoc.h" />
+    <ClInclude Include="Draw.h" />
+    <ClInclude Include="EditAyuda.h" />
+    <ClInclude Include="EditFloat.h" />
+    <ClInclude Include="EditTiempo.h" />
+    <ClInclude Include="EditXP.h" />
+    <ClInclude Include="EnBitmap.h" />
+    <ClInclude Include="extras\MiscelaneosEx.h" />
+    <ClInclude Include="extras\TreeNavBar.h" />
+    <ClInclude Include="FadeWnd.h" />
+    <ClInclude Include="GuiControlBar.h" />
+    <ClInclude Include="GuiDockToolBarEx.h" />
+    <ClInclude Include="hilos\ThreadAuto.h" />
+    <ClInclude Include="HTMLCtrl.h" />
+    <ClInclude Include="HyperLink.h" />
+    <ClInclude Include="ImageProcessors.h" />
+    <ClInclude Include="INFOBARCTRL.H" />
+    <ClInclude Include="ItemList.h" />
+    <ClInclude Include="KCSideBannerWnd.h" />
+    <ClInclude Include="ListBoxXP.h" />
+    <ClInclude Include="ListCtrlSize.h" />
+    <ClInclude Include="logomdi.h" />
+    <ClInclude Include="MasEdit.h" />
+    <ClInclude Include="MatrixStatic.h" />
+    <ClInclude Include="MDITabs\LBSpinButtonCtrl.h" />
+    <ClInclude Include="MDITabs\MDITabs.h" />
+    <ClInclude Include="MsgBoxHook.h" />
+    <ClInclude Include="MyListCtrl.h" />
+    <ClInclude Include="nbMessageBox.h" />
+    <ClInclude Include="newmenu\DialogXP.h" />
+    <ClInclude Include="newmenu\MDIChildWndXP.h" />
+    <ClInclude Include="newmenu\MDIFrameWndXP.h" />
+    <ClInclude Include="newmenu\MultiDocTemplateXP.h" />
+    <ClInclude Include="newmenu\NewMenu.h" />
+    <ClInclude Include="ResizableDialog.h" />
+    <ClInclude Include="ResizableFormView.h" />
+    <ClInclude Include="ResizableGrip.h" />
+    <ClInclude Include="ResizableLayout.h" />
+    <ClInclude Include="ResizableMinMax.h" />
+    <ClInclude Include="ResizableState.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="SEPARADOR\CHECKBOXSEPARATOR.H" />
+    <ClInclude Include="SEPARADOR\SECTIONSEPARATOR.H" />
+    <ClInclude Include="SEPARADOR\SEPARATOR.H" />
+    <ClInclude Include="SEPARADOR\STATICSEPARATOR.H" />
+    <ClInclude Include="SEPARADOR\VISUALSTYLESXP.H" />
+    <ClInclude Include="shockwaveflash1.h" />
+    <ClInclude Include="SortClass.h" />
+    <ClInclude Include="SortHeaderCtrl.h" />
+    <ClInclude Include="SplashScreenEx.h" />
+    <ClInclude Include="SplitterControl.h" />
+    <ClInclude Include="StatusBarXP.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TabCtrlSSL.h" />
+    <ClInclude Include="TabPageSSL.h" />
+    <ClInclude Include="TextProgressCtrl.h" />
+    <ClInclude Include="ToolbarXP.h" />
+    <ClInclude Include="Tools.h" />
+    <ClInclude Include="TreeCtrlXP.h" />
+    <ClInclude Include="treelistctrl\ThreadTreeStat.h" />
+    <ClInclude Include="treelistctrl\TreeListColumnInfo.h" />
+    <ClInclude Include="treelistctrl\TreeListCtrl.h" />
+    <ClInclude Include="treelistctrl\TreeListHeaderCtrl.h" />
+    <ClInclude Include="treelistctrl\TreeListItem.h" />
+    <ClInclude Include="TreeListItemMap.h" />
+    <ClInclude Include="VListCtrl.h" />
+    <ClInclude Include="WinAppEx.h" />
+    <ClInclude Include="WndUtil.h" />
+    <ClInclude Include="XInfoTip.h" />
+    <ClInclude Include="xmlreader.h" />
+    <ClInclude Include="xmlwriter.h" />
+    <ClInclude Include="XStatusBar.h" />
+    <ClInclude Include="XTabCtrl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\bm_checkbox.bmp" />
+    <Image Include="res\bm_def_sort.bmp" />
+    <Image Include="res\fondo.jpg" />
+    <Image Include="res\guidockbar.bmp" />
+    <Image Include="res\info.ico" />
+    <Image Include="res\logo.bmp" />
+    <Image Include="res\matrixsetblue.bmp" />
+    <Image Include="res\matrixsetsmallblue.bmp" />
+    <Image Include="res\matrixsettinyblue.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Componentes.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LAppc\LAppc.vcxproj">
+      <Project>{FA2E85EF-3871-4C5D-815E-5BBDCCDE7EA3}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="Componentes.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

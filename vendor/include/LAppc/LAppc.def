@@ -1,0 +1,6 @@
+; LAppc.def : Declares the module parameters for the DLL.
+
+LIBRARY      "LAppc"
+
+EXPORTS
+    ; Explicit exports can go here

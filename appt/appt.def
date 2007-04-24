@@ -1,0 +1,17 @@
+; appt.def : Declares the module parameters for the DLL.
+
+LIBRARY      "appt"
+
+EXPORTS
+    ; Explicit exports can go here
+
+GetExeName		@1
+GetAppName		@2
+GetLongName		@3
+GetCompany		@4
+GetLogo			@5
+GetAppKey		@6
+GetIDApp		@7
+GetURL			@8
+
+
