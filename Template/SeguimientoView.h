@@ -11,6 +11,7 @@ class CSeguimientoView : public CFormView
 	DECLARE_DYNCREATE(CSeguimientoView)
 	CConector *m_pConector;
 	CString		m_szOldPKZ;
+	CString		m_szCurrentPKZ;
 	enum {
 		query_pkz=1,
 	};
@@ -40,7 +41,6 @@ public:
 	CDateTimeCtrl m_DTSegundo;
 	CDateTimeCtrl m_DTTercero;
 	CDateTimeCtrl m_DTEncuesta;
-	CEditXP m_ENotas;
 	CEditXP m_EPrimero;
 	CEditXP m_ESegundo;
 	CEditXP m_ETercero;
@@ -55,6 +55,16 @@ public:
 public:
 	afx_msg void OnDestroy();
 	LRESULT OnInsertPKZ(WPARAM wParam, LPARAM lParam);
+public:
+	CButtonXP m_BAceptar;
+public:
+	afx_msg void OnBnClickedBok();
+	void Clean();
+	CInfobarCtrl m_SFallecido;
+	void OnSize(UINT nType, int cx, int cy);
+	LRESULT OnShowFallecido(WPARAM wParam, LPARAM lParam);
+	CUsuario *m_pUsuario;
+	LRESULT OnQueryUsuario(WPARAM wParam, LPARAM lParam);
 };
 
 

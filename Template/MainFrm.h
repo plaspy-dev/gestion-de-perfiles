@@ -9,6 +9,7 @@
 
 class CMainFrame : public CMDIFrameWndXP
 {
+	bool m_bLoad;
 	DECLARE_DYNAMIC(CMainFrame)
 public:
 	CMainFrame();
@@ -66,6 +67,12 @@ public:
 	int OnMySQLQueryResult(MySQLMessage *message);
 	int OnQueryEmpty(int owner);
 	int OnQueryTitle(MySQLMessage *message);
+	void OnSelectLanguage(UINT id);
+	void OnUpdateLanguage(CCmdUI *pCmdUI);
+	void OnUpdateAdministrador(CCmdUI *pCmdUI);
+	void OnAdministrador();
+	void OnImportar();
+	void OnUpdateImportar(CCmdUI *pCmdUI);
 };
 
 

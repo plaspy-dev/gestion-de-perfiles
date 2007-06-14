@@ -12,10 +12,14 @@ class CEstudiosView : public CFormView
 
 	CConector *m_pConector;
 	CString		m_szOldPKZ;
+	CString		m_szCurrentPKZ1;
+	CString		m_szCurrentPKZ2;
+	CString		m_szCurrentPKZ3;
 	enum {
 		query_estudios=1,
 		query_alemania,
-		query_fuera
+		query_fuera,
+		query_areas
 	};
 protected:
 	CEstudiosView();           // protected constructor used by dynamic creation
@@ -83,5 +87,37 @@ public:
 public:
 	afx_msg void OnDestroy();
 	LRESULT OnInsertPKZ(WPARAM wParam, LPARAM lParam);
+public:
+	CButtonXP m_BAceptar;
+public:
+	afx_msg void OnBnClickedBok();
+	void Clean();
+public:
+	CButton m_BBecario;
+	CInfobarCtrl m_SFallecido;
+	void OnSize(UINT nType, int cx, int cy);
+	LRESULT OnShowFallecido(WPARAM wParam, LPARAM lParam);
+public:
+	CComboBoxXP m_CBPArea;
+public:
+	CComboBoxXP m_CBAMArea;
+public:
+	CComboBoxXP m_CBADArea;
+public:
+	CComboBoxXP m_CBAOArea;
+public:
+	CComboBoxXP m_CBOPArea;
+public:
+	CComboBoxXP m_CBOMArea;
+public:
+	CComboBoxXP m_CBODArea;
+public:
+	CComboBoxXP m_CBOOArea;
+	CUsuario *m_pUsuario;
+	LRESULT OnQueryUsuario(WPARAM wParam, LPARAM lParam);
+public:
+	CEditXP m_ETipo1;
+public:
+	CEditXP m_ETipo2;
 };
 

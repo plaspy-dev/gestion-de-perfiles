@@ -1,0 +1,6 @@
+; german.def : Declares the module parameters for the DLL.
+
+LIBRARY      "german"
+
+EXPORTS
+    ; Explicit exports can go here

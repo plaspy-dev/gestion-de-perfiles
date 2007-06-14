@@ -32,7 +32,7 @@ __declspec(dllexport) CString GetExeName() {
 
 __declspec(dllexport) CString GetAppName() {
 
-	return "Template";
+	return "Perfiles";
 }
 
 __declspec(dllexport) CString GetLongName() {
@@ -64,7 +64,7 @@ __declspec(dllexport) CString GetAppKey() {
 __declspec(dllexport) int GetIDApp() {
 
 	// necesario para el keygen
-	return 150;
+	return 1;
 }
 
 __declspec(dllexport) CString GetURL() {

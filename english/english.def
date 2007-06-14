@@ -1,0 +1,6 @@
+; english.def : Declares the module parameters for the DLL.
+
+LIBRARY      "english"
+
+EXPORTS
+    ; Explicit exports can go here

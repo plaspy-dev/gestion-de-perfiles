@@ -6,6 +6,7 @@
 #include "MainFrm.h"
 
 #include "TemplateView.h"
+#include "afxwin.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -17,7 +18,6 @@
 BEGIN_MESSAGE_MAP(CTemplateApp, CWinApp)
 	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
-	ON_COMMAND(ID_FILE_PRINT_SETUP, OnFilePrintSetup)
 END_MESSAGE_MAP()
 
 
@@ -25,90 +25,23 @@ END_MESSAGE_MAP()
 
 CTemplateApp::CTemplateApp()
 {
-	m_mlparamold= NULL;
-}
-
-
-void CTemplateApp::OnFilePrintSetup() {
-
-	PRINTDLG pd;
-	pd.lStructSize=(DWORD)sizeof(PRINTDLG);
-	if(GetPrinterDeviceDefaults(&pd))
-	{
-		CPageSetupDialog psd;
-
-		// Initialize margins
-		psd.m_psd.rtMargin.top = GetProfileInt("printer", "y", 20)*100;
-		psd.m_psd.rtMargin.left = GetProfileInt("printer", "x", 20)*100;
-		psd.m_psd.rtMargin.right = GetProfileInt("printer", "cx", 20)*100;
-		psd.m_psd.rtMargin.bottom = GetProfileInt("printer", "cy", 20)*100;
-		psd.m_psd.hDevMode= pd.hDevMode;
-
-		if( psd.DoModal()==IDOK) {
-
-			// margenes
-			WriteProfileInt("printer", "x",psd.m_psd.rtMargin.left/100);
-			WriteProfileInt("printer", "cx",psd.m_psd.rtMargin.right/100);
-			WriteProfileInt("printer", "y",psd.m_psd.rtMargin.top/100);
-			WriteProfileInt("printer", "cy",psd.m_psd.rtMargin.bottom/100);
-			SelectPrinter(psd.m_psd.hDevNames, psd.m_psd.hDevMode);
-
-			// papel
-			DEVMODE FAR *pDevMode=(DEVMODE FAR *)::GlobalLock(m_hDevMode);
-			WriteProfileInt("printer", "orientacion", pDevMode->dmOrientation);
-			WriteProfileInt("printer", "papel",pDevMode->dmPaperSize);
-			::GlobalUnlock(m_hDevMode);
-		}
-	} else CWinApp::OnFilePrintSetup();
 }
 
 CTemplateApp theApp;
 
-HWND CTemplateApp::RegisterApp(HWND mainframe) {
-
-	CRegKey hReg;
-	HWND main= NULL;
-	DWORD dwHandle;
-#ifndef _DEBUG
-	if( ERROR_SUCCESS== hReg.Create(HKEY_CURRENT_USER, CApplicacion::GetAppKey() + "\\Control")) {
-
-		if( hReg.QueryDWORDValue("MainWnd", dwHandle)==ERROR_SUCCESS) {
-
-			main= (HWND) dwHandle;
-			CString titulo;
-			if( ::IsWindow(main)) {
-				CWnd *confirma=CWnd::FromHandle(main);
-				confirma->GetWindowText(titulo);
-				if( titulo.Find("Template")!=-1) {
-					SetForegroundWindow(main);
-					if (IsIconic(main)) 
-						::ShowWindow(main, SW_RESTORE);
-					return main;
-				}
-			}
-		}
-		dwHandle= (DWORD) mainframe;
-		hReg.SetDWORDValue("MainWnd", dwHandle);
-		hReg.Close();
-	}
-#endif
-	return NULL;
-}
-
 
 BOOL CTemplateApp::InitInstance()
 {
-	// Windows XP requiere InitCommonControlsEx() si un manifiesto de
-	// aplicación especifica el uso de ComCtl32.dll versión 6 o posterior para habilitar
-	// estilos visuales. De lo contrario, se generará un error al crear ventanas.
+
+	CString myid;
+	myid.Format("{6A9FA33B-7458-41%d-B96A-B9D28D4B4DF9}",CApplicacion::GetID());
+	if(!CWinAppEx::InitInstance(myid))
+		return false;
+
 	INITCOMMONCONTROLSEX InitCtrls;
 	InitCtrls.dwSize = sizeof(InitCtrls);
-	// Establecer para incluir todas las clases de control comunes que desee utilizar
-	// en la aplicación.
 	InitCtrls.dwICC = ICC_WIN95_CLASSES;
 	InitCommonControlsEx(&InitCtrls);
-
-	CWinApp::InitInstance();
 
 	if (!AfxSocketInit())
 	{
@@ -123,34 +56,13 @@ BOOL CTemplateApp::InitInstance()
 		return FALSE;
 	}
 	AfxEnableControlContainer();
-	
-	CString temp= m_lpCmdLine;
+
 	SetRegistryKey(_T("SDG"));
-	// Crear ventana de marco principal MDI
-	CNewMenu::SetMenuDrawMode(GetProfileInt(_T("NewMenu"),_T("Style"),2));
-
-
-	CMainFrame* pMainFrame = new CMainFrame;
-	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
-		return FALSE;
-
-	CCommandLineInfo cmdInfo;
-	ParseCommandLine(cmdInfo);
-
-	HWND main= RegisterApp(pMainFrame->GetSafeHwnd());
-	if( main) {
-		if( temp.Find("-close")!=-1)
-			SendMessage( main, WM_CLOSE,0,0);
-		else if(!temp.IsEmpty()) {
-			ProcessShellCommand(cmdInfo);
-		}
-		return false;
-	}
-	if( temp.Find("-close")!=-1)
-		return false;
+	
 
 #if defined(ENABLE_LICENSE_CHECK) && !defined(_DEBUG)
-	CTrialInfo trial;
+	/*CTrialInfo trial;
+	CString temp= m_lpCmdLine;
 	if( temp.Find("-Register")!=-1) 
 		return false;
 
@@ -166,17 +78,24 @@ BOOL CTemplateApp::InitInstance()
 			if( trial1.GetLeftDays()<0)
 				return false;
 		}
-	}
+	}*/
 #endif
 
+	CMainFrame* pMainFrame = new CMainFrame;
+	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
+		return FALSE;
+
 	m_pMainWnd = pMainFrame;
+
+	CCommandLineInfo cmdInfo;
+	ParseCommandLine(cmdInfo);
 
 	pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->UpdateWindow();
 
 	// quitar de aqui
-	if( !ProcessShellCommand(cmdInfo))
-		OnFileNew();
+	if (!ProcessShellCommand(cmdInfo))
+		return FALSE;
 
 	return TRUE;
 }
@@ -210,25 +129,9 @@ CDocument* CTemplateApp::OpenDocumentFile(LPCTSTR lpszFileName)
 	return NULL;
 }
 
-void CTemplateApp::OnFileSave()
-{
-}
-
-BOOL CTemplateApp::PreTranslateMessage(MSG* pMsg)
-{
-	if( pMsg->message==WM_LBUTTONDOWN || pMsg->message==WM_RBUTTONDOWN || pMsg->message==WM_KEYDOWN || pMsg->message==WM_SYSKEYDOWN) {
-		if( m_pMainWnd) 
-			((CMainFrame *) m_pMainWnd)->m_nInactivo=0;
-	} else if( pMsg->message==WM_MOUSEMOVE && pMsg->lParam!=m_mlparamold && m_pMainWnd) {
-		m_mlparamold= pMsg->lParam;
-		((CMainFrame *) m_pMainWnd)->m_nInactivo=0;
-	}
-	return CWinApp::PreTranslateMessage(pMsg);
-}
-
 // Cuadro de diálogo CAboutDlg utilizado para el comando Acerca de
 
-class CAboutDlg : public CDialog
+class CAboutDlg : public CDialogXP
 {
 public:
 	CAboutDlg();
@@ -238,22 +141,30 @@ public:
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // Compatibilidad con DDX/DDV
-
+public:
+	CHyperLink m_SLink;
+	CStatic		m_SVersion;
+	virtual BOOL OnInitDialog();
 // Implementación
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	CBitmapPicture m_SLogo;
 };
 
-CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
+CAboutDlg::CAboutDlg() : CDialogXP(CAboutDlg::IDD)
 {
 }
 
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CDialogXP::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_SVERSION, m_SVersion);
+	DDX_Control(pDX, IDC_SLINKEX, m_SLink);
+	DDX_Control(pDX, IDC_SLOGO1, m_SLogo);
 }
 
-BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
+BEGIN_MESSAGE_MAP(CAboutDlg, CDialogXP)
 END_MESSAGE_MAP()
 
 // Comando de la aplicación para ejecutar el cuadro de diálogo
@@ -265,4 +176,14 @@ void CTemplateApp::OnAppAbout()
 
 
 // Controladores de mensaje de CTemplateApp
+BOOL CAboutDlg::OnInitDialog() {
+
+	CDialogXP::OnInitDialog();
+	CString texto;
+	texto.Format(CLanguage::GetTraduccion(IDS_SVERSION), CApplicacion::GetAppName(), OrganizationExample23_VERSION);
+	m_SVersion.SetWindowText(texto);
+	m_SLink.SetURL("http://mysql-demo.example.test");
+	m_SLogo.SetBitmap(CApplicacion::GetBitmap());
+	return TRUE;
+}
 

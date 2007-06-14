@@ -14,6 +14,7 @@ protected:
 	virtual ~CResidenciaView();
 	CConector *m_pConector;
 	CString		m_szOldPKZ;
+	CString		m_szCurrentPKZ;
 	LRESULT OnMySQLMessage(WPARAM wParam, LPARAM lParam);
 
 	enum {
@@ -55,6 +56,17 @@ public:
 	CEditXP m_ECiudad;
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	LRESULT OnInsertPKZ(WPARAM wParam, LPARAM lParam);
+public:
+	CButtonXP m_BAceptar;
+public:
+	CEditXP m_EEMail2;
+public:
+	CEditXP m_EMovil;
+	CInfobarCtrl m_SFallecido;
+	void OnSize(UINT nType, int cx, int cy);
+	LRESULT OnShowFallecido(WPARAM wParam, LPARAM lParam);
+	CUsuario *m_pUsuario;
+	LRESULT OnQueryUsuario(WPARAM wParam, LPARAM lParam);
 };
 
 

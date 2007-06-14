@@ -5,7 +5,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $binaries = (Resolve-Path -LiteralPath $BinaryDirectory).ProviderPath
-$appName = 'Template'
+$appName = 'Perfiles'
 $profiles = @('Software\SDG\Template', 'Software\SDG\Perfiles')
 $currentUser = [Microsoft.Win32.Registry]::CurrentUser
 $machine = [Microsoft.Win32.RegistryKey]::OpenBaseKey(

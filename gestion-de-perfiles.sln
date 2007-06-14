@@ -4,6 +4,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Administrador", "Administra
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "appt", "appt\appt.vcxproj", "{71EC6520-7831-4FF7-AC15-8BA11F1971EF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "english", "english\english.vcxproj", "{1A6E7CD7-165E-4FD3-9C31-6F2A7F923AAC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "german", "german\german.vcxproj", "{AC069CA9-F2C6-40C2-9370-724F49E3491B}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Template", "Template\Template.vcxproj", "{7810A251-3CB3-4E2B-A5A4-8827F24B8AE3}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Componentes", "vendor\include\Componentes\Componentes.vcxproj", "{04F955E5-F846-431D-9CEC-D35BA071A51C}"
@@ -32,6 +36,14 @@ Global
 		{71EC6520-7831-4FF7-AC15-8BA11F1971EF}.Release|Win32.Build.0 = Release|Win32
 		{71EC6520-7831-4FF7-AC15-8BA11F1971EF}.Debug|Win32.ActiveCfg = Debug|Win32
 		{71EC6520-7831-4FF7-AC15-8BA11F1971EF}.Debug|Win32.Build.0 = Debug|Win32
+		{1A6E7CD7-165E-4FD3-9C31-6F2A7F923AAC}.Release|Win32.ActiveCfg = Release|Win32
+		{1A6E7CD7-165E-4FD3-9C31-6F2A7F923AAC}.Release|Win32.Build.0 = Release|Win32
+		{1A6E7CD7-165E-4FD3-9C31-6F2A7F923AAC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1A6E7CD7-165E-4FD3-9C31-6F2A7F923AAC}.Debug|Win32.Build.0 = Debug|Win32
+		{AC069CA9-F2C6-40C2-9370-724F49E3491B}.Release|Win32.ActiveCfg = Release|Win32
+		{AC069CA9-F2C6-40C2-9370-724F49E3491B}.Release|Win32.Build.0 = Release|Win32
+		{AC069CA9-F2C6-40C2-9370-724F49E3491B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AC069CA9-F2C6-40C2-9370-724F49E3491B}.Debug|Win32.Build.0 = Debug|Win32
 		{7810A251-3CB3-4E2B-A5A4-8827F24B8AE3}.Release|Win32.ActiveCfg = Release|Win32
 		{7810A251-3CB3-4E2B-A5A4-8827F24B8AE3}.Release|Win32.Build.0 = Release|Win32
 		{7810A251-3CB3-4E2B-A5A4-8827F24B8AE3}.Debug|Win32.ActiveCfg = Debug|Win32

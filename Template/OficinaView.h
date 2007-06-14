@@ -14,10 +14,12 @@ protected:
 	virtual ~COficinaView();
 	CConector *m_pConector;
 	CString		m_szOldPKZ;
+	CString		m_szCurrentPKZ;
 	LRESULT OnMySQLMessage(WPARAM wParam, LPARAM lParam);
 
 	enum {
 		query_pkz=1,
+		query_tipos,
 	};
 public:
 	enum { IDD = IDD_OFICINAVIEW };
@@ -44,6 +46,7 @@ protected:
 	CEditXP m_EFax;
 	CEditXP m_EEmail;
 	CEditXP m_EWebSite;
+	CComboBoxXP	m_CBTipo;
 	CButtonXP m_BCancelar;
 	void Clean();
 	afx_msg void OnDestroy();
@@ -54,6 +57,15 @@ public:
 	CEditXP m_ECiudad;
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	LRESULT OnInsertPKZ(WPARAM wParam, LPARAM lParam);
+public:
+	CButtonXP m_BAceptar;
+public:
+	CEditXP m_ECargo;
+	CInfobarCtrl m_SFallecido;
+	void OnSize(UINT nType, int cx, int cy);
+	LRESULT OnShowFallecido(WPARAM wParam, LPARAM lParam);
+	CUsuario *m_pUsuario;
+	LRESULT OnQueryUsuario(WPARAM wParam, LPARAM lParam);
 };
 
 

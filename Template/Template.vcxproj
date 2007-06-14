@@ -124,12 +124,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActualizadoPor.cpp" />
+    <ClCompile Include="AreasView.cpp" />
     <ClCompile Include="BusquedaView.cpp" />
     <ClCompile Include="errorreport\ExceptionAttacher.cpp" />
     <ClCompile Include="errorreport\ExceptionHandler.cpp" />
     <ClCompile Include="errorreport\GetWinVer.cpp" />
     <ClCompile Include="errorreport\MiniVersion.cpp" />
     <ClCompile Include="EstudiosView.cpp" />
+    <ClCompile Include="GestionView.cpp" />
+    <ClCompile Include="ImportarDlg.cpp" />
+    <ClCompile Include="IndexarDlg.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="OficinaView.cpp" />
     <ClCompile Include="ResidenciaView.cpp" />
@@ -140,8 +145,12 @@
     </ClCompile>
     <ClCompile Include="Template.cpp" />
     <ClCompile Include="TemplateView.cpp" />
+    <ClCompile Include="TipoView.cpp" />
+    <ClCompile Include="UsuarioDlg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActualizadoPor.h" />
+    <ClInclude Include="AreasView.h" />
     <ClInclude Include="BusquedaView.h" />
     <ClInclude Include="errorreport\CrashFileNames.h" />
     <ClInclude Include="errorreport\Dbghelp.h" />
@@ -149,6 +158,9 @@
     <ClInclude Include="errorreport\GetWinVer.h" />
     <ClInclude Include="errorreport\MiniVersion.h" />
     <ClInclude Include="EstudiosView.h" />
+    <ClInclude Include="GestionView.h" />
+    <ClInclude Include="ImportarDlg.h" />
+    <ClInclude Include="IndexarDlg.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="OficinaView.h" />
     <ClInclude Include="ResidenciaView.h" />
@@ -157,6 +169,8 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Template.h" />
     <ClInclude Include="TemplateView.h" />
+    <ClInclude Include="TipoView.h" />
+    <ClInclude Include="UsuarioDlg.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\asistente.bmp" />

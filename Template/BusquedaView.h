@@ -3,8 +3,6 @@
 #include "afxcmn.h"
 # include <JPrint/JPrint.h>
 
-
-
 // CBusquedaView form view
 
 class CBusquedaView : public CFormView
@@ -13,6 +11,15 @@ class CBusquedaView : public CFormView
 	CConector *m_pConector;
 	CListDemoViewPrint *m_pListPrint;
 
+	enum {
+		query_areas=1,
+		query_resultados,
+		query_paises,
+		query_ciudades,
+		query_universidades,
+		query_tipos,
+		query_todos,
+	};
 protected:
 	CBusquedaView();
 	virtual ~CBusquedaView();
@@ -31,7 +38,7 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-	CEditXP m_ENombre;
+	CEditXP m_EBusqueda;
 public:
 	CButtonXP m_BBuscar;
 public:
@@ -54,6 +61,40 @@ protected:
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnPrint(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
+public:
+	CComboBoxXP m_CBArea;
+public:
+	CButtonXP m_BIndexar;
+public:
+	afx_msg void OnBnClickedBindexar();
+public:
+	CSectionSeparator	m_SAvanzado;
+	CSectionSeparator	m_SBusqueda;
+	CStaticSeparator	m_SFin;
+public:
+	CEditXP m_ENombre;
+public:
+	CEditXP m_EApellido;
+public:
+	CComboBoxXP m_CBPais;
+public:
+	CComboBoxXP m_CBCiudad;
+public:
+	CEditXP m_EInstitucion;
+public:
+	CComboBoxXP m_CBUniversidad;
+	CComboBoxXP m_CBTipo;
+	CButton		m_CTodos;
+	CButton		m_CTodosA;
+public:
+	afx_msg void OnStnClickedSavanzado();
+	afx_msg void OnStnClickedBusqueda();
+	void OnBuscar(bool avanzado, bool todo=false);
+public:
+	afx_msg void OnDestroy();
+	afx_msg void OnChangeTodos();
+	afx_msg void OnChangeTodosA();
+	CString GetCampoReal(CString campo);
 };
 
 

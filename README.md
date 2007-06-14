@@ -15,9 +15,10 @@ Keep a contact, residential address, work history and studies in one Windows rec
 
 ### Features
 
-- Open `Busqueda` in the Navigator and look up a record by its profile identifier.
+- Open **Navegador → Búsqueda** to filter by name, surname, location, university or study type. Select a result to inspect its record.
 - Open **Personales**, **Residencia** or **Oficina** in the Navigator to view the corresponding part of a profile.
 - Use **Herramientas → Servidores** to point the app at a separate MySQL test catalog.
+- With an administrator account in the test database, choose **Archivo → Importar** to select a CSV file, apply the column mapping and rebuild the search index. Copy `demo/extras/alias.xml` to `bin/Release/extras/alias.xml` before importing fictional records or enabling the **Todo** search columns. The supplied account has the consultation role.
 
 ### Requirements
 
@@ -39,7 +40,7 @@ Copy-Item -LiteralPath (Join-Path $sdk 'libmysql.dll') -Destination 'bin/Release
 
 Run the launcher on a Windows test account without settings for this application in the current user or machine registry. It creates and removes the temporary application keys.
 
-Start the isolated MySQL fixture with the first command. Run `pwsh -File demo/ProbarEscritorio.ps1` to start the application with temporary application settings in the current Windows account. Use fictional user `consulta_demo` and password `DEMO_LOCAL_USER`. In the Navigator, open Busqueda and enter `DEMO-501` to locate the fictional profile Alicia Ejemplo. This version matches the profile identifier. Close the application so the launcher can remove those temporary application settings, then stop the database with the second command.
+Start the isolated MySQL fixture with the first command. Run `pwsh -File demo/ProbarEscritorio.ps1` to start the application with temporary application settings in the current Windows account. Use fictional user `consulta_demo` and password `DEMO_LOCAL_USER`. In Search, enter Alicia to locate the fictional profile Alicia Ejemplo (`DEMO-501`). Close the application so the launcher can remove those temporary application settings, then stop the database with the second command.
 
 ```powershell
 docker compose -f demo/compose.yaml up -d --wait
@@ -54,6 +55,8 @@ docker compose -f demo/compose.yaml down --volumes
 - `vendor/include/` contains the entry projects for Componentes, Conector, IOFile, LAppc, JLang and JPrint.
 - `compat/tmschema.h` points the old theme include at the current Windows SDK.
 - `demo/compose.yaml` starts the sample database. `demo/ProbarEscritorio.ps1` launches the app.
+- `english/english.vcxproj` and `german/german.vcxproj` build the translated resource DLLs.
+- `demo/extras/alias.xml` maps CSV column labels to database fields for the importer.
 
 ### Support
 
@@ -65,11 +68,11 @@ Keep archived behavior and changes in separate commits. Retain external notices 
 
 ### History
 
-**April 2007 source snapshot.** Recover the desktop shell, profile and administrative modules. The application gives operators one place for contact, residence and organization details and a separate permissions view. The author date is derived from the archive at noon UTC without an original timezone.
+**June 14, 2007 source snapshot.** Add profile search and education views to move from a result to its records. Restore the English and German resource projects so interface labels can be translated separately. The author date is derived from the archive at noon UTC without an original timezone.
 
 ### Verification
 
-Build and test on 19 November 2026 with MSBuild 18.11.1.51303, MSVC 14.51.36263 (v145) in Release Win32, the MySQL 5.0.16 x86 client and MySQL 5.7.44 in Docker. The app opens the fictional login and returns the DEMO-501 profile from the local database. MSBuild returned exit 0. The commands are in Getting started and Usage. The run exercised login and search. CSV import and Flash rendering were outside this execution. The sample uses 8 tables from the archived application schema plus the connector login tables.
+Build and test on 19 November 2026 with MSBuild 18.11.1.51303, MSVC 14.51.36263 (v145) in Release Win32, the MySQL 5.0.16 x86 client and MySQL 5.7.44 in Docker. The app opens the fictional login and returns the DEMO-501 profile from the local database. MSBuild returned exit 0. The commands are in Getting started and Usage. The run exercised login and search. CSV import and Flash rendering were outside this execution. The sample uses 10 tables from the archived application schema plus the connector login tables.
 
 ### License
 
@@ -91,9 +94,10 @@ Reúne contacto, residencia, información de trabajo y estudios en una ficha de 
 
 ### Funciones
 
-- Abre **Busqueda** en el Navegador y escribe el identificador de la ficha.
+- Abre **Navegador → Búsqueda** y filtra por nombre, apellido, ubicación, universidad o tipo de estudio. Selecciona el resultado para consultar su ficha.
 - Abre **Personales**, **Residencia** u **Oficina** en el Navegador para consultar los datos de ese apartado.
 - Usa **Herramientas → Servidores** para dirigir el programa a un catálogo MySQL de prueba.
+- Con una cuenta de administración en la base de prueba, abre **Archivo → Importar** para elegir el CSV, aplicar la relación de columnas e indexar los registros. Copia `demo/extras/alias.xml` a `bin/Release/extras/alias.xml` antes de importar registros ficticios o activar las columnas de búsqueda **Todo**. La cuenta de ejemplo tiene el perfil de consulta.
 
 ### Requisitos
 
@@ -117,7 +121,7 @@ Copy-Item -LiteralPath (Join-Path $sdk 'libmysql.dll') -Destination 'bin/Release
 
 Ejecuta el lanzador en una cuenta de prueba de Windows sin configuración previa de esta aplicación en el Registro del usuario ni del equipo. El lanzador crea y retira las claves temporales del programa.
 
-Inicia el MySQL aislado con el primer comando. Ejecuta `pwsh -File demo/ProbarEscritorio.ps1` para abrir la aplicación con una configuración temporal de la aplicación en la cuenta de Windows. Usa el usuario ficticio `consulta_demo` y la contraseña `DEMO_LOCAL_USER`. Abre Busqueda en el Navegador y escribe `DEMO-501` para localizar la ficha ficticia Alicia Ejemplo. Esta versión busca por el identificador del perfil. Cierra la aplicación para que el lanzador retire esa configuración temporal. Luego detén la base con el segundo comando.
+Inicia el MySQL aislado con el primer comando. Ejecuta `pwsh -File demo/ProbarEscritorio.ps1` para abrir la aplicación con una configuración temporal de la aplicación en la cuenta de Windows. Usa el usuario ficticio `consulta_demo` y la contraseña `DEMO_LOCAL_USER`. En Búsqueda, escribe Alicia para localizar la ficha ficticia Alicia Ejemplo (`DEMO-501`). Cierra la aplicación para que el lanzador retire esa configuración temporal. Luego detén la base con el segundo comando.
 
 ```powershell
 docker compose -f demo/compose.yaml up -d --wait
@@ -132,6 +136,8 @@ docker compose -f demo/compose.yaml down --volumes
 - `vendor/include/` contiene los proyectos de Componentes, Conector, IOFile, LAppc, JLang y JPrint.
 - `compat/tmschema.h` dirige el encabezado de temas al SDK actual de Windows.
 - `demo/compose.yaml` inicia la base de ejemplo. `demo/ProbarEscritorio.ps1` abre el programa.
+- `english/english.vcxproj` y `german/german.vcxproj` compilan las DLL de recursos traducidos.
+- `demo/extras/alias.xml` vincula las etiquetas de las columnas del CSV con los campos de la base para importar.
 
 ### Soporte
 
@@ -143,11 +149,11 @@ Conserva el comportamiento histórico y las revisiones nuevas en commits separad
 
 ### Historial
 
-**Fuentes de abril de 2007.** Recupera la ventana principal y los módulos de perfiles y administración. La aplicación reúne los datos de contacto, residencia y organización y tiene una vista separada de permisos. La fecha del autor se reconstruyó a mediodía UTC porque el respaldo no indica la zona horaria original.
+**Fuentes del 14 de junio de 2007.** Agrega vistas de búsqueda y estudios para pasar de un resultado a su ficha. Recupera los proyectos de recursos en inglés y alemán para traducir las etiquetas por separado. La fecha del autor se reconstruyó a mediodía UTC porque el respaldo no indica la zona horaria original.
 
 ### Verificación
 
-Compilación y prueba del 19 de noviembre de 2026 con MSBuild 18.11.1.51303, MSVC 14.51.36263 (v145) en Release Win32, el cliente MySQL 5.0.16 x86 y MySQL 5.7.44 en Docker. La aplicación inicia sesión con la cuenta ficticia y devuelve el perfil DEMO-501 de la base local. MSBuild terminó con código 0. Los comandos están en Cómo empezar y Uso. La ejecución comprobó el ingreso y la búsqueda. La importación CSV y Flash quedaron fuera de esa prueba. El ejemplo usa 8 tablas del esquema archivado más las tablas de ingreso del conector.
+Compilación y prueba del 19 de noviembre de 2026 con MSBuild 18.11.1.51303, MSVC 14.51.36263 (v145) en Release Win32, el cliente MySQL 5.0.16 x86 y MySQL 5.7.44 en Docker. La aplicación inicia sesión con la cuenta ficticia y devuelve el perfil DEMO-501 de la base local. MSBuild terminó con código 0. Los comandos están en Cómo empezar y Uso. La ejecución comprobó el ingreso y la búsqueda. La importación CSV y Flash quedaron fuera de esa prueba. El ejemplo usa 10 tablas del esquema archivado más las tablas de ingreso del conector.
 
 ### Licencia
 

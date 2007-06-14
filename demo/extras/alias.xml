@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db>
+  <clave>
+    <tabla>usuario</tabla>
+    <nombre>pkz</nombre>
+    <alias>Pkz</alias>
+  </clave>
+  <clave>
+    <tabla>usuario</tabla>
+    <nombre>nombre</nombre>
+    <alias>Nombre</alias>
+  </clave>
+  <clave>
+    <tabla>usuario</tabla>
+    <nombre>apellido</nombre>
+    <alias>Apellido</alias>
+  </clave>
+  <clave>
+    <tabla>usuario</tabla>
+    <nombre>sapellido</nombre>
+    <alias>Segundo Apellido</alias>
+  </clave>
+  <clave>
+    <tabla>usuario</tabla>
+    <nombre>nacimiento</nombre>
+    <alias>Fecha de Nacimiento</alias>
+  </clave>
+  <clave>
+    <tabla>usuario</tabla>
+    <nombre>sexo</nombre>
+    <alias>Sexo</alias>
+  </clave>
+  <clave>
+    <tabla>usuario</tabla>
+    <nombre>nacionalidad</nombre>
+    <alias>Nacionalidad</alias>
+  </clave>
+  <clave>
+    <tabla>usuario</tabla>
+    <nombre>correspondencia</nombre>
+    <alias>Correspondencia</alias>
+  </clave>
+  <clave>
+    <tabla>usuario</tabla>
+    <nombre>fallecido</nombre>
+    <alias>Fallecido</alias>
+  </clave>
+
+<!-- tabla residencia -->
+
+
+  <clave>
+    <tabla>residencia</tabla>
+    <nombre>pais</nombre>
+    <alias>Pais Residencia</alias>
+  </clave>
+  <clave>
+    <tabla>residencia</tabla>
+    <nombre>departamento</nombre>
+    <alias>Departamento Residencia</alias>
+  </clave>
+  <clave>
+    <tabla>residencia</tabla>
+    <nombre>ciudad</nombre>
+    <alias>Ciudad Residencia</alias>
+  </clave>
+  <clave>
+    <tabla>residencia</tabla>
+    <nombre>direccion</nombre>
+    <alias>Direccion Residencia</alias>
+  </clave>
+  <clave>
+    <tabla>residencia</tabla>
+    <nombre>cpostal</nombre>
+    <alias>Codigo Postal Residencia</alias>
+  </clave>
+  <clave>
+    <tabla>residencia</tabla>
+    <nombre>aaereo</nombre>
+    <alias>Apartado Aereo Residencia</alias>
+  </clave>
+  <clave>
+    <tabla>residencia</tabla>
+    <nombre>telefono</nombre>
+    <alias>Telefono Residencia</alias>
+  </clave>
+  <clave>
+    <tabla>residencia</tabla>
+    <nombre>movil</nombre>
+    <alias>Telefono Movil</alias>
+  </clave>
+  <clave>
+    <tabla>residencia</tabla>
+    <nombre>fax</nombre>
+    <alias>Fax Residencia</alias>
+  </clave>
+  <clave>
+    <tabla>residencia</tabla>
+    <nombre>email</nombre>
+    <alias>Correo Electronico Personal 1</alias>
+  </clave>
+  <clave>
+    <tabla>residencia</tabla>
+    <nombre>email2</nombre>
+    <alias>Correo Electronico Personal 2</alias>
+  </clave>
+  <clave>
+    <tabla>residencia</tabla>
+    <nombre>website</nombre>
+    <alias>Pagina Web Personal</alias>
+  </clave>
+
+
+<!-- tabla empresa -->
+
+
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>nombre</nombre>
+    <alias>Nombre Oficina</alias>
+  </clave>
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>pais</nombre>
+    <alias>Pais Oficina</alias>
+  </clave>
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>departamento</nombre>
+    <alias>Departamento Oficina</alias>
+  </clave>
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>ciudad</nombre>
+    <alias>Ciudad Oficina</alias>
+  </clave>
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>direccion</nombre>
+    <alias>Direccion Oficina</alias>
+  </clave>
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>cpostal</nombre>
+    <alias>Codigo Postal Oficina</alias>
+  </clave>
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>aaereo</nombre>
+    <alias>Apartado Aereo Oficina</alias>
+  </clave>
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>telefono</nombre>
+    <alias>Telefono Oficina</alias>
+  </clave>
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>fax</nombre>
+    <alias>Fax Oficina</alias>
+  </clave>
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>email</nombre>
+    <alias>Correo Electronico Oficina</alias>
+  </clave>
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>website</nombre>
+    <alias>Pagina Web Oficina</alias>
+  </clave>
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>cargo</nombre>
+    <alias>Cargo Oficina</alias>
+  </clave>
+ <clave>
+    <tabla>empresa</tabla>
+    <nombre>tipo</nombre>
+    <alias>Tipo de Institucion</alias>
+  </clave>
+
+<!-- tabla educacion -->
+
+  <clave>
+    <tabla>educacion</tabla>
+    <nombre>carrera</nombre>
+    <alias>Carrera </alias>
+  </clave>
+  <clave>
+    <tabla>educacion</tabla>
+    <nombre>universidad</nombre>
+    <alias>Universidad </alias>
+  </clave>
+  <clave>
+    <tabla>educacion</tabla>
+    <nombre>comienzob1</nombre>
+    <alias>Comienzo Beca 1</alias>
+  </clave>
+  <clave>
+    <tabla>educacion</tabla>
+    <nombre>finb1</nombre>
+    <alias>Fin Beca 1</alias>
+  </clave>
+  <clave>
+    <tabla>educacion</tabla>
+    <nombre>comienzob2</nombre>
+    <alias>Comienzo Beca 2</alias>
+  </clave>
+  <clave>
+    <tabla>educacion</tabla>
+    <nombre>finb2</nombre>
+    <alias>Fin Beca 2</alias>
+  </clave>
+  <clave>
+    <tabla>educacion</tabla>
+    <nombre>revista</nombre>
+    <alias>Revista</alias>
+  </clave>
+  <clave>
+    <tabla>educacion</tabla>
+    <nombre>titulos</nombre>
+    <alias>Titulos Academicos</alias>
+  </clave>
+  <clave>
+    <tabla>educacion</tabla>
+    <nombre>tipo1</nombre>
+    <alias>Tipo de Beca 1</alias>
+  </clave>
+  <clave>
+    <tabla>educacion</tabla>
+    <nombre>tipo2</nombre>
+    <alias>Tipo de Beca 2</alias>
+  </clave>
+  <clave>
+    <tabla>educacion</tabla>
+    <nombre>becario</nombre>
+    <alias>Becario DAAD</alias>
+  </clave>
+
+
+<!-- tabla estudios -->
+
+
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>pregrado</nombre>
+    <alias>Pregrado</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>puniversidad</nombre>
+    <alias>Pregrado Universidad</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>maestria</nombre>
+    <alias>Maestria</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>muniversidad</nombre>
+    <alias>Maestria Universidad</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>doctorado</nombre>
+    <alias>Doctorado</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>duniversidad</nombre>
+    <alias>Doctorado Universidad</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>otros</nombre>
+    <alias>Otros</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>ouniversidad</nombre>
+    <alias>Otros Universidad</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>parea</nombre>
+    <alias>Pregrado Area</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>marea</nombre>
+    <alias>Maestria Area</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>darea</nombre>
+    <alias>Doctorado Area</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>oarea</nombre>
+    <alias>Otros Area</alias>
+  </clave>
+
+
+<!-- tabla estudios fuera -->
+
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>pregrado</nombre>
+    <alias>Pregrado Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>puniversidad</nombre>
+    <alias>Pregrado Universidad Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>ppais</nombre>
+    <alias>Pregrado Pais Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>maestria</nombre>
+    <alias>Maestria Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>muniversidad</nombre>
+    <alias>Maestria Universidad Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>mpais</nombre>
+    <alias>Maestria Pais Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>doctorado</nombre>
+    <alias>Doctorado Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>duniversidad</nombre>
+    <alias>Doctorado Universidad Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>dpais</nombre>
+    <alias>Doctorado Pais Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>otros</nombre>
+    <alias>Otros Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>ouniversidad</nombre>
+    <alias>Otros Universidad Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>opais</nombre>
+    <alias>Otros Pais Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>parea</nombre>
+    <alias>Pais Area Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>marea</nombre>
+    <alias>Maestria Area Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>darea</nombre>
+    <alias>Doctorado Area Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>oarea</nombre>
+    <alias>Otros Area Fuera</alias>
+  </clave>
+
+
+<!-- tabla seguimiento -->
+
+  
+  <clave>
+    <tabla>seguimiento</tabla>
+    <nombre>primero</nombre>
+    <alias>Primer Seguimiento</alias>
+  </clave>
+  <clave>
+    <tabla>seguimiento</tabla>
+    <nombre>mmedio</nombre>
+    <alias>Medio Contacto 1</alias>
+  </clave>
+  <clave>
+    <tabla>seguimiento</tabla>
+    <nombre>segundo</nombre>
+    <alias>Segundo Seguimiento</alias>
+  </clave>
+  <clave>
+    <tabla>seguimiento</tabla>
+    <nombre>smedio</nombre>
+    <alias>Medio Contacto 2</alias>
+  </clave>
+  <clave>
+    <tabla>seguimiento</tabla>
+    <nombre>tercero</nombre>
+    <alias>Tercer Seguimiento</alias>
+  </clave>
+  <clave>
+    <tabla>seguimiento</tabla>
+    <nombre>tmedio</nombre>
+    <alias>Medio Contacto 3</alias>
+  </clave>
+  <clave>
+    <tabla>seguimiento</tabla>
+    <nombre>encuesta</nombre>
+    <alias>Encuesta</alias>
+  </clave>
+  <clave>
+    <tabla>seguimiento</tabla>
+    <nombre>respondio</nombre>
+    <alias>Respondio</alias>
+  </clave>
+
+<!-- tabla gestion -->
+
+  <clave>
+    <tabla>gestion</tabla>
+    <nombre>actualizado</nombre>
+    <alias>Actualizado</alias>
+  </clave>
+  <clave>
+    <tabla>gestion</tabla>
+    <nombre>actualizadopor</nombre>
+    <alias>Actualizado por</alias>
+  </clave>
+  <clave>
+    <tabla>gestion</tabla>
+    <nombre>notas</nombre>
+    <alias>Notas</alias>
+  </clave>
+<clave>
+    <tabla>gestion</tabla>
+    <nombre>ultimaactualizacion</nombre>
+    <alias>Ultima Actualizacion</alias>
+  </clave>
+
+</db>

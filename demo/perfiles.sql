@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS shared (
 
 CREATE TABLE IF NOT EXISTS usuario (
 	pkz VARCHAR(255) NOT NULL,
-	encabezado VARCHAR(255),
 	titulo VARCHAR(255),
 	nombre VARCHAR(255),
 	apellido VARCHAR(255),
@@ -23,6 +22,7 @@ CREATE TABLE IF NOT EXISTS usuario (
 	nacionalidad VARCHAR(255),
 	correspondencia INT,
 	estado INT,
+	fallecido INT,
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
 
@@ -37,7 +37,9 @@ CREATE TABLE IF NOT EXISTS residencia (
 	telefono VARCHAR(255),
 	fax VARCHAR(255),
 	email VARCHAR(255),
+	email2 VARCHAR(255),
 	website VARCHAR(255),
+	movil VARCHAR(255),
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
 
@@ -54,6 +56,8 @@ CREATE TABLE IF NOT EXISTS empresa (
 	fax VARCHAR(255),
 	email VARCHAR(255),
 	website VARCHAR(255),
+	cargo VARCHAR(255),
+	tipo INT,
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
 
@@ -67,6 +71,9 @@ CREATE TABLE IF NOT EXISTS educacion (
 	finb2 DATE,
 	revista VARCHAR(255),
 	titulos VARCHAR(255),
+	tipo1 VARCHAR(255),
+	tipo2 VARCHAR(255),
+	becario INT,
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
 
@@ -80,6 +87,10 @@ CREATE TABLE IF NOT EXISTS estudios (
 	duniversidad VARCHAR(255),
 	otros VARCHAR(255),
 	ouniversidad VARCHAR(255),
+	parea INT,
+	marea INT,
+	darea INT,
+	oarea INT,
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
 
@@ -97,6 +108,10 @@ CREATE TABLE IF NOT EXISTS estudiosfuera (
 	otros VARCHAR(255),
 	ouniversidad VARCHAR(255),
 	opais VARCHAR(255),
+	parea INT,
+	marea INT,
+	darea INT,
+	oarea INT,
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
 
@@ -110,8 +125,23 @@ CREATE TABLE IF NOT EXISTS seguimiento (
 	tmedio VARCHAR(255),
 	encuesta DATE,
 	respondio VARCHAR(255),
+	PRIMARY KEY(pkz)
+) ENGINE=MyISAM;
+
+CREATE TABLE IF NOT EXISTS gestion (
+	pkz VARCHAR(255) NOT NULL,
+	actualizado INT,
+	actualizadopor VARCHAR(255),
+	ultimaactualizacion DATETIME,
 	notas TEXT,
 	PRIMARY KEY(pkz)
+) ENGINE=MyISAM;
+
+CREATE TABLE IF NOT EXISTS busqueda (
+	pkz VARCHAR(255) NOT NULL,
+	texto TEXT,
+	PRIMARY KEY(pkz),
+	FULLTEXT(pkz,texto)
 ) ENGINE=MyISAM;
 
 CREATE TABLE grupo (
@@ -155,3 +185,4 @@ INSERT INTO usuarios (id,login,nombre,descripcion,grupo)
 VALUES (401,'consulta_demo','Operador ficticio','0',2);
 INSERT INTO shared (id,nombre,descripcion,nReservado,szReservado)
 VALUES (401,'consulta_demo','0',2,'2');
+INSERT INTO busqueda (pkz,texto) VALUES ('DEMO-501','Alicia Ejemplo perfil ficticio');

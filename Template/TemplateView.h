@@ -15,6 +15,7 @@ protected: // Crear sólo a partir de serialización
 	CConector *m_pConector;
 	LRESULT OnMySQLMessage(WPARAM wParam, LPARAM lParam);
 	CString		m_szOldPKZ;
+	CString		m_szCurrentPKZ;
 
 public:
 	enum{ IDD = IDD_TEMPLATE_FORM };
@@ -51,7 +52,6 @@ public:
 	CDateTimeCtrl m_DTNacimiento;
 
 	CEditXP m_EPKZ;
-	CEditXP m_EEncabezamiento;
 	CEditXP m_ETitulo;
 	CEditXP m_ENombre;
 	CEditXP m_EApellido;
@@ -66,6 +66,21 @@ public:
 	CEditXP m_ENacionalidad;
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	LRESULT OnInsertPKZ(WPARAM wParam, LPARAM lParam);
+public:
+	CButtonXP m_BAceptar;
+public:
+	afx_msg void OnDtnDatetimechangeDnacimiento(NMHDR *pNMHDR, LRESULT *pResult);
+public:
+	CStatic m_SAnos;
+public:
+	CButton m_BFallecido;
+public:
+	CInfobarCtrl m_SFallecido;
+public:
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+
+	CUsuario *m_pUsuario;
+	LRESULT OnQueryUsuario(WPARAM wParam, LPARAM lParam);
 };
 
 

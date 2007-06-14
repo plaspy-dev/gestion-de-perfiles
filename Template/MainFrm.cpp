@@ -10,6 +10,12 @@
 # include "EstudiosView.h"
 # include "SeguimientoView.h"
 # include "BusquedaView.h"
+# include "GestionView.h"
+# include "UsuarioDlg.h"
+# include "areasview.h"
+# include "ImportarDlg.h"
+# include "IndexarDlg.h"
+# include "TipoView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,6 +38,12 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndXP)
 	ON_MESSAGE(WM_QUERYCONECTOR,OnQueryConector)
 	ON_MESSAGE(WM_QUERYUSUARIO,OnQueryUsuario) 
 	ON_MESSAGE(WM_MYSQL,OnMySQL)
+	ON_COMMAND_RANGE(32771, 32773, OnSelectLanguage)
+	ON_UPDATE_COMMAND_UI_RANGE(32771, 32773, OnUpdateLanguage)
+	ON_UPDATE_COMMAND_UI(ID_ARCHIVO_ADMINISTRADOR, OnUpdateAdministrador)
+	ON_COMMAND(ID_ARCHIVO_ADMINISTRADOR, OnAdministrador)
+	ON_COMMAND(ID_FILE_OPEN, OnImportar)
+	ON_UPDATE_COMMAND_UI(ID_FILE_OPEN, OnUpdateImportar)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -52,6 +64,7 @@ CMainFrame::CMainFrame()
 {
 	m_pUsuario= NULL;
 	m_nAnimation=0;
+	m_bLoad=false;
 }
 
 CMainFrame::~CMainFrame()
@@ -84,6 +97,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockControlBar(&m_wndToolBar);
 
 	CREATE_JDOCK(this);
+
+	// establecemos los clicks del arbol en uno
+	AfxGetApp()->WriteProfileInt("treenav","simple", 1);
 
 	// barras de herramientas
 	if (!m_pNavBar.Create(_T("Navegador"),WS_CHILD, this, 200))
@@ -144,9 +160,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	/*if(!Registrar())
 	return -1;*/
 	// este es el de la licencia
-#ifdef ENABLE_LICENSE_CHECK
-	SetTimer(4, 30*60*1000, NULL);
-#endif
+	// SetTimer(4, 30*60*1000, NULL);
+
+	m_LogoMdiClientWnd.SetFlash(CApplicacion::GetAppPath( AfxGetApp()->GetProfileString("swfop", "archivo", "logo.swf")), 
+		AfxGetApp()->GetProfileInt("swfop", "ancho", 400),
+		AfxGetApp()->GetProfileInt("swfop", "alto", 150),
+		AfxGetApp()->GetProfileInt("swfop", "bkcolor", -1)
+		);
+
 	return 0;
 }
 
@@ -197,6 +218,11 @@ void CMainFrame::LoadState() {
 
 	CWaitCursor wait;
 
+#ifndef _DEBUG
+	CString temp="CBusquedaView,CTemplateView,CResidenciaView,COficinaView,CEstudiosView,CSeguimientoView,CGestionView,CAreasView,CTipoView";
+	AfxGetApp()->WriteProfileString("control", "classname", temp);
+#endif
+	
 	LoadBarState("barras\\Barras");
 	m_pNavBar.LoadStateBar("Barras\\Barras");
 
@@ -218,6 +244,12 @@ void CMainFrame::SaveState() {
 }
 
 bool CMainFrame::Conectar() {
+
+	if(!m_bLoad) {
+		CLanguage::InitLanguage();
+		m_pNavBar.SetWindowText(CLanguage::GetTraduccion(IDS_NAVEGADOR));
+	}
+	m_bLoad=true;
 
 	FUNCTION_STACK_TRACE("AAAAAAAA");
 	bool existe=false;
@@ -247,19 +279,18 @@ bool CMainFrame::Conectar() {
 		if( !existe)
 			m_pNavBar.m_Tree.DeleteAllItems();
 
-		m_pConector.SetPasswd( datos[0]);
+		m_pConector.SetPasswd(datos[0]);
 		m_pConector.SetUser(datos[1]);
 
 		if( !m_pUsuario)
-			m_pUsuario= new CUsuario( datos[2], atoi(datos[3]), atoi(datos[4]));
+			m_pUsuario= new CUsuario( datos[2], atoi(datos[3]), m_pConector.EsIncrustado() ? 2 : atoi(datos[4]));
 		else {
 			m_pUsuario->SetUser(datos[2]);
 			m_pUsuario->SetId(atoi(datos[3]));
-			m_pUsuario->SetGrupo(atoi(datos[4]));
+			m_pUsuario->SetGrupo(m_pConector.EsIncrustado() ? 2 : atoi(datos[4]));
 		}
 		// m_pConector.SetRealUser(dlg.m_szNombreReal);
-
-		m_wndStatusBar.SetText(2, datos[2]);
+		m_wndStatusBar.SetText(2, m_pConector.EsIncrustado() ? "Usuario" : datos[2]);
 
 		// registrarse en el chat
 		SendMessage(WM_REGISTRARUSUARIO, 0, -2);
@@ -288,21 +319,26 @@ bool CMainFrame::LoadDocumentos() {
 
 	HTREEITEM hRoot;
 
-	hRoot= m_pNavBar.m_Tree.InsertItem("Datos");
+	hRoot= m_pNavBar.m_Tree.InsertItem(CLanguage::GetTraduccion(IDS_DATOS));
 	m_pNavBar.m_Tree.SetItemState(hRoot, TVIS_BOLD,TVIS_BOLD);
 
 	CNewMenu *mimenu= new CNewMenu();
 
 	mimenu->CreateMenu();
 
-	LoadDocument(mimenu, hRoot, "Personales", IDR_TemplateTYPE ,RUNTIME_CLASS(CTemplateView));	
-	LoadDocument(mimenu, hRoot, "Residencia", IDR_TemplateTYPE ,RUNTIME_CLASS(CResidenciaView));
-	LoadDocument(mimenu, hRoot, "Oficina", IDR_TemplateTYPE ,RUNTIME_CLASS(COficinaView));
-	LoadDocument(mimenu, hRoot, "Estudios", IDR_TemplateTYPE ,RUNTIME_CLASS(CEstudiosView));
-	LoadDocument(mimenu, hRoot, "Seguimiento", IDR_TemplateTYPE ,RUNTIME_CLASS(CSeguimientoView));
-	LoadDocument(mimenu, hRoot, "Busqueda", IDR_TemplateTYPE ,RUNTIME_CLASS(CBusquedaView));
+	LoadDocument(mimenu, hRoot, CLanguage::GetTraduccion(IDS_BUSQUEDA), IDR_TemplateTYPE ,RUNTIME_CLASS(CBusquedaView));
+	LoadDocument(mimenu, hRoot, CLanguage::GetTraduccion(IDS_PERSONALES), IDR_TemplateTYPE ,RUNTIME_CLASS(CTemplateView));	
+	LoadDocument(mimenu, hRoot, CLanguage::GetTraduccion(IDS_RESIDENCIA), IDR_TemplateTYPE ,RUNTIME_CLASS(CResidenciaView));
+	LoadDocument(mimenu, hRoot, CLanguage::GetTraduccion(IDS_OFICINA), IDR_TemplateTYPE ,RUNTIME_CLASS(COficinaView));
+	LoadDocument(mimenu, hRoot, CLanguage::GetTraduccion(IDS_EDUCACION), IDR_TemplateTYPE ,RUNTIME_CLASS(CEstudiosView));
+	LoadDocument(mimenu, hRoot, CLanguage::GetTraduccion(IDS_SEGUIMIENTO), IDR_TemplateTYPE ,RUNTIME_CLASS(CSeguimientoView));
+	LoadDocument(mimenu, hRoot, CLanguage::GetTraduccion(IDS_GESTIONBASE), IDR_TemplateTYPE ,RUNTIME_CLASS(CGestionView));
+	if(m_pUsuario->Pertenece(GRUPO_ADMINISTRADOR)) {
+		LoadDocument(mimenu, hRoot, CLanguage::GetTraduccion(IDS_AREAS), IDR_TemplateTYPE ,RUNTIME_CLASS(CAreasView));
+		LoadDocument(mimenu, hRoot, CLanguage::GetTraduccion(IDS_TIPOS), IDR_TemplateTYPE ,RUNTIME_CLASS(CTipoView));
+	}
 
-	m_pMenus.Add("Datos", (DWORD)mimenu);
+	m_pMenus.Add(CLanguage::GetTraduccion(IDS_DATOS), (DWORD)mimenu);
 
 	m_pNavBar.m_Tree.Expand(hRoot, TVE_EXPAND);
 
@@ -412,7 +448,11 @@ LRESULT CMainFrame::OnMySQL(WPARAM wParam, LPARAM lParam) {
 			OnQueryEmpty(mensaje->GetID());
 		break;
 	case QUERY_ERROR:
-		SetErrorEx(NULL, mensaje->GetAt(0)+ " \r\nMientras se realizaba la consulta\r\n" + mensaje->GetAt(1), 3, "mysql");
+		{
+			CString formato;
+			formato.Format(CLanguage::GetTraduccion(IDS_ERRORMYSQL), mensaje->GetAt(0),mensaje->GetAt(1));
+			SetErrorEx(NULL,formato, 3, "mysql");
+		}
 		break;
 	}
 	return 0;
@@ -440,7 +480,7 @@ void CMainFrame::OnConfiguracionServidores()
 	if( GetDlgDataBases()==IDOK) {
 
 		if( m_pUsuario) {
-			SetErrorEx(NULL, "Debe Reiniciar SDGFinger Nómina acceso para realizar los cambios", 0, "conector");
+			SetErrorEx(NULL, "Debe Reiniciar "+ CApplicacion::GetAppName() + " acceso para realizar los cambios", 0, "conector");
 		} else {
 			m_pConector.SetMainFrame( this);
 			m_pConector.Cargar();
@@ -479,6 +519,7 @@ void CMainFrame::OnTimer(UINT nIDEvent)
 		m_wndStatusBar.SetBitmap(4, temp, temp);
 #ifdef ENABLE_LICENSE_CHECK
 	} else if(nIDEvent==4) { // licencia
+		/*
 #ifdef _DEBUG
 		CMyRegKey key;
 		key.MyOpen(HKEY_LOCAL_MACHINE, CApplicacion::GetAppKey() + "\\control");
@@ -492,6 +533,7 @@ void CMainFrame::OnTimer(UINT nIDEvent)
 			KillTimer(4);
 		}
 #endif
+		*/
 #endif
 	} else if( nIDEvent==50000) {
 		// inactividad
@@ -508,7 +550,7 @@ void CMainFrame::OnTimer(UINT nIDEvent)
 				if( AfxGetApp()->GetProfileInt("control", "efecto", 1) && IsWindowsNT())
 					m_pFadeWnd= new CFadeWnd(this);
 				while( Conectar()==false) {
-					if( AfxMessageBox( "Esta acción Cerrara SDGFinger.\n¿Desea Cerrarlo?", MB_ICONQUESTION | MB_YESNO)==IDYES) {
+					if( AfxMessageBox( "Esta acción Cerrara "+ CApplicacion::GetAppName() + ".\n¿Desea Cerrarlo?", MB_ICONQUESTION | MB_YESNO)==IDYES) {
 						PostMessage(WM_CLOSE);
 						return;
 					}
@@ -526,5 +568,75 @@ void CMainFrame::OnUpdateFileNew(CCmdUI *pCmdUI)
 	pCmdUI->Enable(!m_pUsuario || AfxGetApp()->GetProfileInt("control", "timeout", 1));
 }
 
+void CMainFrame::OnSelectLanguage(UINT id) 
+{
+	DWORD idioma= LANG_SPANISH;
+	switch(id) {
+		case 32772:
+			idioma=LANG_GERMAN;
+			break;
+		case 32773:
+			idioma= LANG_ENGLISH;
+			break;
+	}
+	CLanguage::SetLanguage(idioma);
+	if(CLanguage::GetLanguage()!=idioma) {
 
+		CString formato;
+		formato.Format(CLanguage::GetTraduccion(IDS_RESTART), CApplicacion::GetAppName());
+		MessageBox(formato);
+		PostMessage(WM_CLOSE);
+	}
+}
 
+void CMainFrame::OnUpdateLanguage(CCmdUI *pCmdUI) {
+
+	DWORD idioma= CLanguage::GetLanguage();
+	switch(pCmdUI->m_nID) {
+		case 32772:
+			pCmdUI->SetCheck(idioma==LANG_GERMAN);
+			break;
+		case 32773:
+			pCmdUI->SetCheck(idioma==LANG_ENGLISH);
+			break;
+		default:
+			pCmdUI->SetCheck(idioma==LANG_SPANISH || idioma==0);
+			break;
+	}
+}
+
+void CMainFrame::OnUpdateAdministrador(CCmdUI *pCmdUI) {
+	
+	pCmdUI->Enable(m_pUsuario && m_pUsuario->GetGrupo()==2 && m_pConector.EsIncrustado());
+}
+
+void CMainFrame::OnAdministrador() {
+
+	CUsuarioDlg dlg;
+	if(dlg.DoModal()==IDOK)
+	{
+		m_pUsuario->SetGrupo(1);
+		m_wndStatusBar.SetText(2, "Administrador");
+		SendMessageBroadCast(WM_QUERYUSUARIO, 0, (LPARAM) m_pUsuario);
+		LoadDocument((CNewMenu *)m_pMenus.GetData(), m_pNavBar.m_Tree.GetRootItem(), CLanguage::GetTraduccion(IDS_AREAS), IDR_TemplateTYPE ,RUNTIME_CLASS(CAreasView));
+		LoadDocument((CNewMenu *)m_pMenus.GetData(), m_pNavBar.m_Tree.GetRootItem(), CLanguage::GetTraduccion(IDS_TIPOS), IDR_TemplateTYPE ,RUNTIME_CLASS(CTipoView));
+	}
+}
+
+void CMainFrame::OnImportar() {
+
+	CFileDialog filedlg(true, "csv", "", 6,CLanguage::GetTraduccion(IDS_TIPODEIMPORTACION), this);
+	if(filedlg.DoModal()==IDOK) {
+		CImportarDlg dlg;
+		dlg.m_szArchivo= filedlg.GetPathName();
+		if(dlg.DoModal()==IDOK) {
+			CIndexarDlg idlg;
+			idlg.DoModal();
+		}
+	}
+}
+
+void CMainFrame::OnUpdateImportar(CCmdUI *pCmdUI) {
+
+	pCmdUI->Enable(m_pUsuario && m_pUsuario->GetGrupo()==1);
+}

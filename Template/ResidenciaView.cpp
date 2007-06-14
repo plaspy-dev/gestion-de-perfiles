@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "Template.h"
 #include "ResidenciaView.h"
-
+# include "GestionView.h"
 
 // CResidenciaView
 
@@ -35,6 +35,10 @@ void CResidenciaView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EPAIS, m_EPais);
 	DDX_Control(pDX, IDC_EDEPARTAMENTO, m_EDepartamento);
 	DDX_Control(pDX, IDC_ECIUDAD, m_ECiudad);
+	DDX_Control(pDX, IDC_BOK, m_BAceptar);
+	DDX_Control(pDX, IDC_EEMAIL2, m_EEMail2);
+	DDX_Control(pDX, IDC_EMOVIL, m_EMovil);
+	DDX_Control(pDX, IDC_SFALLECIDO, m_SFallecido);
 }
 
 BEGIN_MESSAGE_MAP(CResidenciaView, CFormView)
@@ -43,6 +47,10 @@ BEGIN_MESSAGE_MAP(CResidenciaView, CFormView)
 	ON_MESSAGE(WM_MYSQL, OnMySQLMessage)
 	ON_WM_DESTROY()
 	ON_MESSAGE(WM_INSERTPKZ,  OnInsertPKZ)
+	ON_BN_CLICKED(IDC_BOK, &CResidenciaView::OnBnClickedBok)
+	ON_WM_SIZE()
+	ON_MESSAGE(WM_SHOWFALLECIDO, OnShowFallecido)
+	ON_MESSAGE(WM_QUERYUSUARIO, OnQueryUsuario)
 END_MESSAGE_MAP()
 
 
@@ -69,8 +77,33 @@ void CResidenciaView::OnInitialUpdate()
 {
 	CFormView::OnInitialUpdate();
 
-	GetDocument()->SetTitle("Residencia");
+	GetDocument()->SetTitle(CLanguage::GetTraduccion(IDS_RESIDENCIA));
 	m_pConector= (CConector *)AfxGetMainWnd()->SendMessage(WM_QUERYCONECTOR);
+	m_pUsuario= (CUsuario *)AfxGetMainWnd()->SendMessage(WM_QUERYUSUARIO);
+	m_SFallecido.SetFontColor(RGB(255,0,0));
+	m_SFallecido.ShowWindow(SW_HIDE);
+	m_BAceptar.ShowWindow(m_pUsuario->GetGrupo()==1 ? SW_NORMAL : SW_HIDE);
+
+	m_EDireccion.InitAutoWidth();
+	m_ECPostal.InitAutoWidth();
+	m_EAAereo.InitAutoWidth();
+	m_ETelefono.InitAutoWidth();
+	m_EFax.InitAutoWidth();
+	m_EEmail.InitAutoWidth();
+	m_EWebSite.InitAutoWidth();
+	m_EPais.InitAutoWidth();
+	m_EDepartamento.InitAutoWidth();
+	m_ECiudad.InitAutoWidth();
+	m_EEMail2.InitAutoWidth();
+	m_EMovil.InitAutoWidth();
+	m_EPKZ.InitAutoWidth();
+}
+
+LRESULT CResidenciaView::OnQueryUsuario(WPARAM wParam, LPARAM lParam) {
+
+	m_pUsuario= (CUsuario *)lParam;
+	m_BAceptar.ShowWindow(m_pUsuario->GetGrupo()==1 ? SW_NORMAL : SW_HIDE);
+	return 0;
 }
 
 void CResidenciaView::OnEnKillfocusEpkz1()
@@ -80,7 +113,6 @@ void CResidenciaView::OnEnKillfocusEpkz1()
 		return;
 	m_szOldPKZ=temp;
 	Clean();
-	((CMDIFrameWndXP *) AfxGetMainWnd())->SendMessageBroadCast(WM_INSERTPKZ, 0, (LPARAM)(const char *)temp);
 
 	CQuery query("residencia");
 
@@ -94,8 +126,11 @@ void CResidenciaView::OnEnKillfocusEpkz1()
 	query["website"]= "website";
 	query+="pais";
 	query+="departamento";
+	query+="email2";
+	query+="movil";
 
 	m_pConector->Query(query.GetSelect("pkz='"+  m_EPKZ.Text + "'"), query_pkz, this);
+	((CMDIFrameWndXP *) AfxGetMainWnd())->SendMessageBroadCast(WM_INSERTPKZ, 0, (LPARAM)(const char *)m_EPKZ.Text);
 }
 
 void CResidenciaView::OnBnClickedBok()
@@ -104,11 +139,12 @@ void CResidenciaView::OnBnClickedBok()
 	CQuery query("residencia");
 	
 	if(m_EPKZ.Text.IsEmpty()) {
-		SetErrorEx(&m_EPKZ, "Por favor ingrese un PKZ.", 2, "residencia");
+		SetErrorEx(&m_EPKZ, CLanguage::GetTraduccion(IDS_INSERTPKZ), 2, "residencia");
 		return;
 	}
 
-	query["pkz"]= m_EPKZ.Text;
+	if(m_szCurrentPKZ.IsEmpty())
+		query["pkz"]= m_EPKZ.Text;
 	query["ciudad"]= m_ECiudad.Text;
 	query["direccion"]= m_EDireccion.Text;
 	query["cpostal"]= m_ECPostal.Text;
@@ -117,13 +153,17 @@ void CResidenciaView::OnBnClickedBok()
 	query["fax"]= m_EFax.Text;
 	query["email"]= m_EEmail.Text;
 	query["website"]= m_EWebSite.Text;
+	query["email2"]=m_EEMail2.Text;
+	query["movil"]=m_EMovil.Text;
 
-	m_pConector->Query(query.GetInsert());
-	OnBnClickedBcancel();	
+	m_pConector->Query(m_szCurrentPKZ.IsEmpty() ? query.GetInsert() : query.GetUpdate("pkz='"+ m_szCurrentPKZ+ "'"));
+	CGestionView::Actualizar(m_pConector, m_EPKZ.Text);
+	OnBnClickedBcancel();
 }
 
 void CResidenciaView::Clean() {
 
+	m_szCurrentPKZ.Empty();
 	m_EPais.Text="";
 	m_EDepartamento.Text="";
 	m_ECiudad.Text="";
@@ -134,13 +174,17 @@ void CResidenciaView::Clean() {
 	m_EFax.Text="";
 	m_EEmail.Text="";
 	m_EWebSite.Text="";
+	m_EEMail2.Text="";
+	m_EMovil.Text="";
+	m_SFallecido.ShowWindow(SW_HIDE);
 }
 
 void CResidenciaView::OnBnClickedBcancel()
 {
+	m_szOldPKZ.Empty();
 	m_EPKZ.Text="";
 	Clean();
-	SetErrorEx(&m_EPKZ, "Listo");
+	SetErrorEx(&m_EPKZ, CLanguage::GetTraduccion(AFX_IDS_IDLEMESSAGE));
 }
 
 LRESULT CResidenciaView::OnMySQLMessage(WPARAM wParam, LPARAM lParam) {
@@ -149,6 +193,7 @@ LRESULT CResidenciaView::OnMySQLMessage(WPARAM wParam, LPARAM lParam) {
 		case QUERY_RESULT:
 			if(mess.GetID()==query_pkz) {
 
+				m_szCurrentPKZ= m_szOldPKZ;
 				m_ECiudad.Text=mess["ciudad"];
 				m_EDireccion.Text =mess["direccion"];
 				m_ECPostal.Text =mess["cpostal"];
@@ -159,6 +204,8 @@ LRESULT CResidenciaView::OnMySQLMessage(WPARAM wParam, LPARAM lParam) {
 				m_EWebSite.Text =mess["website"];
 				m_EDepartamento.Text=mess["departamento"];
 				m_EPais.Text=mess["pais"];
+				m_EEMail2.Text=mess["email2"];
+				m_EMovil.Text=mess["movil"];
 			}
 			break;
 	}
@@ -190,5 +237,21 @@ LRESULT CResidenciaView::OnInsertPKZ(WPARAM wParam, LPARAM lParam) {
 	CString temp=(const char *)lParam;
 	m_EPKZ.Text=temp;
 	OnEnKillfocusEpkz1();
+	return 0;
+}
+
+void CResidenciaView::OnSize(UINT nType, int cx, int cy)
+{
+	CFormView::OnSize(nType, cx, cy);
+	if(::IsWindow(m_SFallecido)) {
+		CRect rect;
+		m_SFallecido.GetWindowRect(rect);
+		m_SFallecido.MoveWindow(0,0,cx, rect.Height());
+	}
+}
+
+LRESULT CResidenciaView::OnShowFallecido(WPARAM wParam, LPARAM lParam) {
+
+	m_SFallecido.ShowWindow(wParam ? SW_NORMAL : SW_HIDE);
 	return 0;
 }

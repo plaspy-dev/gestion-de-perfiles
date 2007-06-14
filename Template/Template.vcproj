@@ -194,11 +194,31 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\ActualizadoPor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\AreasView.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\BusquedaView.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\EstudiosView.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\GestionView.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ImportarDlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\IndexarDlg.cpp"
 				>
 			</File>
 			<File
@@ -245,6 +265,14 @@
 				RelativePath=".\TemplateView.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\TipoView.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\UsuarioDlg.cpp"
+				>
+			</File>
 			<Filter
 				Name="error"
 				>
@@ -272,11 +300,31 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\ActualizadoPor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\AreasView.h"
+				>
+			</File>
+			<File
 				RelativePath=".\BusquedaView.h"
 				>
 			</File>
 			<File
 				RelativePath=".\EstudiosView.h"
+				>
+			</File>
+			<File
+				RelativePath=".\GestionView.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ImportarDlg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\IndexarDlg.h"
 				>
 			</File>
 			<File
@@ -309,6 +357,14 @@
 			</File>
 			<File
 				RelativePath=".\TemplateView.h"
+				>
+			</File>
+			<File
+				RelativePath=".\TipoView.h"
+				>
+			</File>
+			<File
+				RelativePath=".\UsuarioDlg.h"
 				>
 			</File>
 			<Filter
