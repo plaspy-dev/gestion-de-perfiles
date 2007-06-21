@@ -32,7 +32,6 @@ void CEstudiosView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_DPCOMIENZO2, m_EComienzo2);
 	DDX_Control(pDX, IDC_DPFIN2, m_DTFin2);
 	DDX_Control(pDX, IDC_EREVISTA, m_ERevista);
-	DDX_Control(pDX, IDC_ETITULO, m_ETitulo);
 	DDX_Control(pDX, IDC_EAPREGRADO, m_EAPregrado);
 	DDX_Control(pDX, IDC_EAMAESTRIA, m_EAMaestria);
 	DDX_Control(pDX, IDC_EADOCTORADO, m_EADoctorado);
@@ -67,6 +66,14 @@ void CEstudiosView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_CFOAREA, m_CBOOArea);
 	DDX_Control(pDX, IDC_ETIPO1, m_ETipo1);
 	DDX_Control(pDX, IDC_ETIPO2, m_ETipo2);
+	DDX_Control(pDX, IDC_EBECARIOOTRA, m_EBecarioOtra);
+	DDX_Control(pDX, IDC_CAPOSTAREA, m_CBAPostArea);
+	DDX_Control(pDX, IDC_EAAPOSTGRADO, m_EAPostGrado);
+	DDX_Control(pDX, IDC_EAPOSTUNIVERSIDAD, m_EAPostUniversidad);
+	DDX_Control(pDX, IDC_CFPOSTAREA, m_CBOPostArea);
+	DDX_Control(pDX, IDC_EFPOSTGRADO, m_EOPostgrado);
+	DDX_Control(pDX, IDC_EFPOSTUNIVERSIDAD, m_EOPostUniversidad);
+	DDX_Control(pDX, IDC_EFPOSTPAIS, m_EOPostPais);
 }
 
 BEGIN_MESSAGE_MAP(CEstudiosView, CFormView)
@@ -130,6 +137,9 @@ void CEstudiosView::OnInitialUpdate()
 	m_CBAOArea.Mensaje=CLanguage::GetTraduccion(IDS_AREA);
 	m_EAOtros.Mensaje=CLanguage::GetTraduccion(IDS_ESTUDIOS);
 	m_EAOUniversidad.Mensaje=CLanguage::GetTraduccion(IDS_UNIVERSIDAD);
+	m_EAPostGrado.Mensaje=CLanguage::GetTraduccion(IDS_POSTGRADO);
+	m_EAPostUniversidad.Mensaje= CLanguage::GetTraduccion(IDS_UNIVERSIDAD);
+	m_CBAPostArea.Mensaje=CLanguage::GetTraduccion(IDS_AREA);
 
 	m_CBOPArea.Mensaje=CLanguage::GetTraduccion(IDS_AREA);
 	m_EFPregrado.Mensaje=CLanguage::GetTraduccion(IDS_ESTUDIOS);
@@ -147,6 +157,10 @@ void CEstudiosView::OnInitialUpdate()
 	m_EFOtros.Mensaje=CLanguage::GetTraduccion(IDS_ESTUDIOS);
 	m_EFOUniversidad.Mensaje=CLanguage::GetTraduccion(IDS_UNIVERSIDAD);
 	m_EFOPais.Mensaje=CLanguage::GetTraduccion(IDS_PAIS);
+	m_CBOPostArea.Mensaje= CLanguage::GetTraduccion(IDS_AREA);
+	m_EOPostgrado.Mensaje= CLanguage::GetTraduccion(IDS_POSTGRADO);
+	m_EOPostUniversidad.Mensaje=CLanguage::GetTraduccion(IDS_UNIVERSIDAD);
+	m_EOPostPais.Mensaje= CLanguage::GetTraduccion(IDS_PAIS);
 
 
 	m_pConector->Query("SELECT id, nombre FROM shared WHERE nReservado=3 AND (szReservado IS NULL OR szReservado!=-1)" ,query_areas, this);
@@ -182,8 +196,8 @@ void CEstudiosView::OnEnKillfocusEpkz()
 	query+="finb2";
 	query+="tipo2";
 	query+="revista";
-	query+="titulos";
 	query+="becario";
+	query+="becariootra";
 
 	m_pConector->Query(query.GetSelect("pkz='"+  m_EPKZ.Text + "'"), query_estudios, this);
 
@@ -201,6 +215,9 @@ void CEstudiosView::OnEnKillfocusEpkz()
 	query+="marea";
 	query+="darea";
 	query+="oarea";
+	query+="postgrado";
+	query+="postuniversidad";
+	query+="postarea";
 
 	m_pConector->Query(query.GetSelect("pkz='"+  m_EPKZ.Text + "'"), query_alemania, this);
 
@@ -223,6 +240,11 @@ void CEstudiosView::OnEnKillfocusEpkz()
 	query+="marea";
 	query+="darea";
 	query+="oarea";
+	
+	query+="postgrado";
+	query+="postuniversidad";
+	query+="postpais";
+	query+="postarea";
 
 	m_pConector->Query(query.GetSelect("pkz='"+  m_EPKZ.Text + "'"), query_fuera, this);
 
@@ -246,9 +268,9 @@ void CEstudiosView::Clean() {
 	m_EComienzo2.SetTime(tiempo);
 	m_DTFin2.SetTime(tiempo);
 	m_ERevista.Text="";
-	m_ETitulo.Text="";
 	m_ETipo1.Text="";
 	m_ETipo2.Text="";
+	m_EBecarioOtra.Text="";
 
 	// estudios en alemania.
 	m_EAPregrado.Text="";
@@ -259,6 +281,9 @@ void CEstudiosView::Clean() {
 	m_EAMUniversidad.Text="";
 	m_EADUniversidad.Text="";
 	m_EAOUniversidad.Text="";
+	m_EAPostGrado.Text="";
+	m_EAPostUniversidad.Text="";
+
 	// estudios fuera de alemania
 	m_EFPregrado.Text="";
 	m_EFMaestria.Text="";
@@ -272,6 +297,9 @@ void CEstudiosView::Clean() {
 	m_EFMPais.Text="";
 	m_EFDPais.Text="";
 	m_EFOPais.Text="";
+	m_EOPostPais.Text="";
+	m_EOPostgrado.Text="";
+	m_EOPostUniversidad.Text="";
 	// becario
 	m_BBecario.SetCheck(0);
 	m_SFallecido.ShowWindow(SW_HIDE);
@@ -286,6 +314,8 @@ void CEstudiosView::Clean() {
 	m_CBOMArea.SelectedIndex=-1;
 	m_CBODArea.SelectedIndex=-1;
 	m_CBOOArea.SelectedIndex=-1;
+	m_CBAPostArea.SelectedIndex=-1;
+	m_CBOPostArea.SelectedIndex=-1;
 	
 	m_CBPArea.Mensaje = CLanguage::GetTraduccion(IDS_AREA);
 	m_CBAMArea.Mensaje= CLanguage::GetTraduccion(IDS_AREA);
@@ -295,6 +325,8 @@ void CEstudiosView::Clean() {
 	m_CBOMArea.Mensaje= CLanguage::GetTraduccion(IDS_AREA);
 	m_CBODArea.Mensaje= CLanguage::GetTraduccion(IDS_AREA);
 	m_CBOOArea.Mensaje= CLanguage::GetTraduccion(IDS_AREA);
+	m_CBAPostArea.Mensaje= CLanguage::GetTraduccion(IDS_AREA);
+	m_CBOPostArea.Mensaje= CLanguage::GetTraduccion(IDS_AREA);
 }
 
 void CEstudiosView::OnBnClickedButton1()
@@ -325,10 +357,10 @@ LRESULT CEstudiosView::OnMySQLMessage(WPARAM wParam, LPARAM lParam) {
 				tiempo= query["finb2"];
 				m_DTFin2.SetTime(tiempo);
 				m_ERevista.Text=query["revista"];
-				m_ETitulo.Text=query["titulos"];
 				m_BBecario.SetCheck(atoi(query["becario"]));
 				m_ETipo1.Text= query["tipo1"];
 				m_ETipo2.Text= query["tipo2"];
+				m_EBecarioOtra.Text=query["becariootra"];
 
 			} else if(query.GetID()==query_alemania) {
 
@@ -341,11 +373,15 @@ LRESULT CEstudiosView::OnMySQLMessage(WPARAM wParam, LPARAM lParam) {
 				m_EADUniversidad.Text=query["duniversidad"];
 				m_EAOtros.Text=query["otros"];
 				m_EAOUniversidad.Text=query["ouniversidad"];
+				m_EAPostGrado.Text=query["postgrado"];
+				m_EAPostUniversidad.Text=query["postuniversidad"];
 				
 				m_CBPArea.SelectedData=atoi(query["parea"]);
 				m_CBAMArea.SelectedData=atoi(query["marea"]);
 				m_CBADArea.SelectedData=atoi(query["darea"]);
 				m_CBAOArea.SelectedData=atoi(query["oarea"]);
+				m_CBAPostArea.SelectedIndex= atoi(query["postarea"]);
+
 			} else if(query.GetID()==query_fuera) {
 
 				m_szCurrentPKZ3= m_szOldPKZ;
@@ -361,12 +397,17 @@ LRESULT CEstudiosView::OnMySQLMessage(WPARAM wParam, LPARAM lParam) {
 				m_EFMPais.Text=query["mpais"];
 				m_EFDPais.Text=query["dpais"];
 				m_EFOPais.Text=query["opais"];
+				m_EOPostgrado.Text=query["postgrado"];
+				m_EOPostUniversidad.Text=query["postuniversidad"];
+				m_EOPostPais.Text=query["postpais"];
 
 				m_CBOPArea.SelectedData=atoi(query["parea"]);
 				m_CBOMArea.SelectedData=atoi(query["marea"]);
 				m_CBODArea.SelectedData=atoi(query["darea"]);
 				m_CBOOArea.SelectedData=atoi(query["oarea"]);
-			}else if(query.GetID()==query_areas) {
+				m_CBOPostArea.SelectedIndex= atoi(query["postarea"]);
+
+			} else if(query.GetID()==query_areas) {
 
 				int pos=atoi(query["id"]);
 				m_CBPArea.SetItemData(m_CBPArea.AddString(query["nombre"]), pos);
@@ -377,6 +418,8 @@ LRESULT CEstudiosView::OnMySQLMessage(WPARAM wParam, LPARAM lParam) {
 				m_CBOMArea.SetItemData(m_CBOMArea.AddString(query["nombre"]), pos);
 				m_CBODArea.SetItemData(m_CBODArea.AddString(query["nombre"]), pos);
 				m_CBOOArea.SetItemData(m_CBOOArea.AddString(query["nombre"]), pos);
+				m_CBAPostArea.SetItemData(m_CBAPostArea.AddString(query["nombre"]), pos);
+				m_CBOPostArea.SetItemData(m_CBOPostArea.AddString(query["nombre"]), pos);
 			}
 			break;
 	}
@@ -440,9 +483,9 @@ void CEstudiosView::OnBnClickedBok()
 	query["finb2"]=tiempo.GetFormatoMysql();
 	query["tipo2"]= m_ETipo2.Text;
 	query["revista"]=m_ERevista.Text;
-	query["titulos"]=m_ETitulo.Text;
 	temp.Format("%d", m_BBecario.GetCheck());
 	query["becario"]=temp;
+	query["becariootra"]=m_EBecarioOtra.Text;
 
 	m_pConector->Query(m_szCurrentPKZ1.IsEmpty() ? query.GetInsert() : query.GetUpdate("pkz='"+ m_szCurrentPKZ1 + "'"));
 
@@ -460,6 +503,9 @@ void CEstudiosView::OnBnClickedBok()
 	query["duniversidad"]=m_EADUniversidad.Text;
 	query["otros"]=m_EAOtros.Text;
 	query["ouniversidad"]=m_EAOUniversidad.Text;
+	query["postgrado"]= m_EAPostGrado.Text;
+	query["postuniversidad"]= m_EAPostUniversidad.Text;
+
 
 	temp.Format("%d",m_CBPArea.SelectedData);
 	query["parea"]=temp;
@@ -469,6 +515,8 @@ void CEstudiosView::OnBnClickedBok()
 	query["darea"]=temp;
 	temp.Format("%d",m_CBAOArea.SelectedData);
 	query["oarea"]=temp;
+	temp.Format("%d", m_CBAPostArea.SelectedIndex);
+	query["postarea"]=temp;
 
 	m_pConector->Query(m_szCurrentPKZ2.IsEmpty() ? query.GetInsert() : query.GetUpdate("pkz='"+ m_szCurrentPKZ2 + "'"));
 
@@ -491,6 +539,9 @@ void CEstudiosView::OnBnClickedBok()
 	query["otros"]=m_EFOtros.Text;
 	query["ouniversidad"]=m_EFOUniversidad.Text;
 	query["opais"]=m_EFOPais.Text;
+	query["postgrado"]= m_EOPostgrado.Text;
+	query["postpais"]= m_EOPostPais.Text;
+	query["postuniversidad"]= m_EOPostUniversidad.Text;
 
 	temp.Format("%d",m_CBOPArea.SelectedData);
 	query["parea"]=temp;
@@ -500,6 +551,8 @@ void CEstudiosView::OnBnClickedBok()
 	query["darea"]=temp;
 	temp.Format("%d",m_CBOOArea.SelectedData);
 	query["oarea"]=temp;
+	temp.Format("%d",m_CBOPostArea.SelectedData);
+	query["postarea"]=temp;
 
 	m_pConector->Query(m_szCurrentPKZ3.IsEmpty() ? query.GetInsert() : query.GetUpdate("pkz='"+ m_szCurrentPKZ3 + "'"));
 

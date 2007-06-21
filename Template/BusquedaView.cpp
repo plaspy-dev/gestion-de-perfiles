@@ -42,6 +42,8 @@ void CBusquedaView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_CTIPO, m_CBTipo);
 	DDX_Control(pDX, IDC_CTODOS, m_CTodos);
 	DDX_Control(pDX, IDC_CTODOSA, m_CTodosA);
+	DDX_Control(pDX, IDC_BCANCELAR, m_BCancelar);
+	DDX_Control(pDX, IDC_BCANCELAR2, m_BCancelar2);
 }
 
 BEGIN_MESSAGE_MAP(CBusquedaView, CFormView)
@@ -62,6 +64,13 @@ BEGIN_MESSAGE_MAP(CBusquedaView, CFormView)
 	ON_WM_DESTROY()
 	ON_BN_CLICKED(IDC_CTODOS, OnChangeTodos)
 	ON_BN_CLICKED(IDC_CTODOSA, OnChangeTodosA)
+	ON_BN_CLICKED(IDC_BCANCELAR, &CBusquedaView::OnBnClickedBcancelar)
+	ON_BN_CLICKED(IDC_BCANCELAR2, &CBusquedaView::OnBnClickedBcancelar)
+	ON_COMMAND(2001, OnVerResidencia)
+	ON_COMMAND(2002, OnVerOficina)
+	ON_COMMAND(2003, OnVerEducacion)
+	ON_COMMAND(2004, OnVerSeguimiento)
+	ON_COMMAND(2005, OnVerGestion)
 END_MESSAGE_MAP()
 
 
@@ -111,6 +120,10 @@ CString CBusquedaView::GetCampoReal(CString campo) {
 		campo.Format("IF(usuario.fallecido=1, 'X','')");
 	} else if(campo=="educacion.becario") {
 		campo.Format("IF(educacion.becario=1, 'X','')");
+	} else if(campo=="estudios.postarea") {
+		campo="estudiospostarea.nombre";
+	} else if(campo=="estudiosfuera.postarea") {
+		campo="estudiospostareaf.nombre";
 	}
 	return campo;
 }
@@ -173,24 +186,33 @@ void CBusquedaView::OnBuscar(bool avanzado, bool todo/*=false*/) {
 		left+=" LEFT JOIN shared AS estudiosmarea ON (estudios.marea=estudiosmarea.id) ";
 		left+=" LEFT JOIN shared AS estudiosdarea ON (estudios.darea=estudiosdarea.id) ";
 		left+=" LEFT JOIN shared AS estudiosoarea ON (estudios.oarea=estudiosoarea.id) ";
+		left+=" LEFT JOIN shared AS estudiospostarea ON (estudios.postarea=estudiospostarea.id) ";
+
 		left+=" LEFT JOIN shared AS estudiospareaf ON (estudiosfuera.parea=estudiospareaf.id) ";
 		left+=" LEFT JOIN shared AS estudiosmareaf ON (estudiosfuera.marea=estudiosmareaf.id) ";
 		left+=" LEFT JOIN shared AS estudiosdareaf ON (estudiosfuera.darea=estudiosdareaf.id) ";
 		left+=" LEFT JOIN shared AS estudiosoareaf ON (estudiosfuera.oarea=estudiosoareaf.id) ";
+		left+=" LEFT JOIN shared AS estudiospostareaf ON (estudiosfuera.postarea=estudiospostareaf.id) ";
 
 	} else {
+
 		query["pkz"]="usuario.pkz";
 		query["nombre"]="usuario.nombre";
 		query["apellido"]="usuario.apellido";
 		query["sapellido"]="usuario.sapellido";
-		query["toficina"]="residencia.telefono";
+		query["nacionalidad"]="usuario.nacionalidad";
+		query["paisrecidencia"]="residencia.pais";
+		query["ciudadresidencia"]="residencia.ciudad";
+		query["tcasa"]="residencia.telefono";
 		query["tempresa"]="empresa.telefono";
-
 
 		m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_PKZ));
 		m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_NOMBRE));
 		m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_APELLIDO));
 		m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_SAPELLIDO));
+		m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_NACIONALIDAD));
+		m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_PAISDERESIDENCIA));
+		m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_CIUDADRESIDENCIA));
 		m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_TELEFONOCASA));
 		m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_TELEFONOOFICINA));
 	}
@@ -268,6 +290,8 @@ void CBusquedaView::OnBuscar(bool avanzado, bool todo/*=false*/) {
 			if(!temp.IsEmpty())
 				temp+=" AND ";
 			temp+=" ( ";
+			temp+="educacion.universidad LIKE '%" + m_CBUniversidad.Text + "%'";
+			temp+=" OR ";
 			temp+="estudios.puniversidad LIKE '%" + m_CBUniversidad.Text + "%'";
 			temp+=" OR ";
 			temp+="estudios.muniversidad LIKE '%" + m_CBUniversidad.Text + "%'";
@@ -276,6 +300,8 @@ void CBusquedaView::OnBuscar(bool avanzado, bool todo/*=false*/) {
 			temp+=" OR ";
 			temp+="estudios.ouniversidad LIKE '%" + m_CBUniversidad.Text + "%'";
 			temp+=" OR ";
+			temp+="estudios.postuniversidad LIKE '%" + m_CBUniversidad.Text + "%'";
+			temp+=" OR ";
 			temp+="estudiosfuera.puniversidad LIKE '%" + m_CBUniversidad.Text + "%'";
 			temp+=" OR ";
 			temp+="estudiosfuera.muniversidad LIKE '%" + m_CBUniversidad.Text + "%'";
@@ -283,6 +309,8 @@ void CBusquedaView::OnBuscar(bool avanzado, bool todo/*=false*/) {
 			temp+="estudiosfuera.duniversidad LIKE '%" + m_CBUniversidad.Text + "%'";
 			temp+=" OR ";
 			temp+="estudiosfuera.ouniversidad LIKE '%" + m_CBUniversidad.Text + "%'";
+			temp+=" OR ";
+			temp+="estudiosfuera.postuniversidad LIKE '%" + m_CBUniversidad.Text + "%'";
 			temp+=" ) ";
 
 			if(left.Find("LEFT JOIN estudios ON (usuario.pkz=estudios.pkz)")==-1)
@@ -308,8 +336,8 @@ void CBusquedaView::OnBuscar(bool avanzado, bool todo/*=false*/) {
 			if(left.Find("LEFT JOIN estudiosfuera ON (usuario.pkz=estudiosfuera.pkz)")==-1)
 				left+=" LEFT JOIN estudiosfuera ON (usuario.pkz=estudiosfuera.pkz) ";
 
-			area=" (estudios.parea=$$ OR estudios.marea=$$ OR estudios.darea=$$ OR estudios.oarea=$$ ";
-			area+=" OR estudiosfuera.parea=$$ OR estudiosfuera.marea=$$ OR estudiosfuera.darea=$$ OR estudiosfuera.oarea=$$) ";
+			area=" (estudios.parea=$$ OR estudios.marea=$$ OR estudios.darea=$$ OR estudios.oarea=$$ OR estudios.postarea=$$ ";
+			area+=" OR estudiosfuera.parea=$$ OR estudiosfuera.marea=$$ OR estudiosfuera.darea=$$ OR estudiosfuera.oarea=$$ OR estudiosfuera.postarea=$$) ";
 			CString data;
 			data.Format("%d", m_CBArea.SelectedData);
 			area.Replace("$$", data);
@@ -339,6 +367,9 @@ void CBusquedaView::OnInitialUpdate()
 	m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_NOMBRE));
 	m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_APELLIDO));
 	m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_SAPELLIDO));
+	m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_NACIONALIDAD));
+	m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_PAISDERESIDENCIA));
+	m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_CIUDADRESIDENCIA));
 	m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_TELEFONOCASA));
 	m_LCBuscar.AddColumn(CLanguage::GetTraduccion(IDS_TELEFONOOFICINA));
 
@@ -389,13 +420,17 @@ void CBusquedaView::OnInitialUpdate()
 
 	m_pConector->Query(consulta, query_ciudades, this);
 
-	consulta= " SELECT puniversidad as a FROM estudios ";
+	consulta= " SELECT universidad as a FROM educacion ";
+	consulta+=" UNION ";
+	consulta+=" SELECT puniversidad as a FROM estudios ";
 	consulta+=" UNION ";
 	consulta+=" SELECT muniversidad as a FROM estudios ";
 	consulta+=" UNION ";
 	consulta+=" SELECT duniversidad as a FROM estudios ";
 	consulta+=" UNION ";
 	consulta+=" SELECT ouniversidad as a FROM estudios ";
+	consulta+=" UNION ";
+	consulta+=" SELECT postuniversidad as a FROM estudios ";
 	consulta+=" UNION ";
 	consulta+=" SELECT puniversidad as a FROM estudiosfuera ";
 	consulta+=" UNION ";
@@ -404,6 +439,8 @@ void CBusquedaView::OnInitialUpdate()
 	consulta+=" SELECT duniversidad as a FROM estudiosfuera ";
 	consulta+=" UNION ";
 	consulta+=" SELECT ouniversidad as a FROM estudiosfuera ";
+	consulta+=" UNION ";
+	consulta+=" SELECT postuniversidad as a FROM estudiosfuera ";
 	consulta+=" GROUP BY a";
 
 	m_pConector->Query(consulta, query_universidades, this);
@@ -424,13 +461,18 @@ LRESULT CBusquedaView::OnMySQLMessage(WPARAM wParam ,LPARAM lParam) {
 			break;
 		case QUERY_RESULT:
 			if(query.GetID()==query_resultados) {
-			
+
 				int pos= m_LCBuscar.AddItem(query["pkz"]);
 				m_LCBuscar.Items[pos][1]=query["nombre"];
 				m_LCBuscar.Items[pos][2]=query["apellido"];
 				m_LCBuscar.Items[pos][3]=query["sapellido"];
-				m_LCBuscar.Items[pos][4]=query["toficina"];
-				m_LCBuscar.Items[pos][5]=query["tempresa"];
+				m_LCBuscar.Items[pos][4]=query["nacionalidad"];
+				m_LCBuscar.Items[pos][5]=query["paisrecidencia"];
+				m_LCBuscar.Items[pos][6]=query["ciudadresidencia"];
+				m_LCBuscar.Items[pos][7]=query["tcasa"];
+				m_LCBuscar.Items[pos][8]=query["tempresa"];
+
+
 			} else if(query.GetID()==query_todos) {
 				int pos= m_LCBuscar.GetItemCount();
 				for(int i=0; i<query.GetColumnCount(); i++) {
@@ -483,6 +525,54 @@ void CBusquedaView::OnVer() {
 	((CMDIFrameWndXP *) AfxGetMainWnd())->SendMessageBroadCast(WM_INSERTPKZ, 0, (LPARAM)(const char *)temp);
 }
 
+void CBusquedaView::OnVerResidencia() {
+
+	int index= m_LCBuscar.SelectedIndex;
+	if(index==-1) 
+		return;
+	CString temp= m_LCBuscar.Items[index][0];
+	AfxGetMainWnd()->SendMessage(WM_TREENAVEGADOR, 100,	(LPARAM)(const char *)"CResidenciaView");
+	((CMDIFrameWndXP *) AfxGetMainWnd())->SendMessageBroadCast(WM_INSERTPKZ, 0, (LPARAM)(const char *)temp);
+}
+
+void CBusquedaView::OnVerOficina() {
+
+	int index= m_LCBuscar.SelectedIndex;
+	if(index==-1) 
+		return;
+	CString temp= m_LCBuscar.Items[index][0];
+	AfxGetMainWnd()->SendMessage(WM_TREENAVEGADOR, 100,	(LPARAM)(const char *)"COficinaView");
+	((CMDIFrameWndXP *) AfxGetMainWnd())->SendMessageBroadCast(WM_INSERTPKZ, 0, (LPARAM)(const char *)temp);
+}
+
+void CBusquedaView::OnVerEducacion() {
+
+	int index= m_LCBuscar.SelectedIndex;
+	if(index==-1) 
+		return;
+	CString temp= m_LCBuscar.Items[index][0];
+	AfxGetMainWnd()->SendMessage(WM_TREENAVEGADOR, 100,	(LPARAM)(const char *)"CEstudiosView");
+	((CMDIFrameWndXP *) AfxGetMainWnd())->SendMessageBroadCast(WM_INSERTPKZ, 0, (LPARAM)(const char *)temp);
+}
+void CBusquedaView::OnVerSeguimiento() {
+
+	int index= m_LCBuscar.SelectedIndex;
+	if(index==-1) 
+		return;
+	CString temp= m_LCBuscar.Items[index][0];
+	AfxGetMainWnd()->SendMessage(WM_TREENAVEGADOR, 100,	(LPARAM)(const char *)"CSeguimientoView");
+	((CMDIFrameWndXP *) AfxGetMainWnd())->SendMessageBroadCast(WM_INSERTPKZ, 0, (LPARAM)(const char *)temp);
+}
+void CBusquedaView::OnVerGestion() {
+
+	int index= m_LCBuscar.SelectedIndex;
+	if(index==-1) 
+		return;
+	CString temp= m_LCBuscar.Items[index][0];
+	AfxGetMainWnd()->SendMessage(WM_TREENAVEGADOR, 100,	(LPARAM)(const char *)"CGestionView");
+	((CMDIFrameWndXP *) AfxGetMainWnd())->SendMessageBroadCast(WM_INSERTPKZ, 0, (LPARAM)(const char *)temp);
+}
+
 void CBusquedaView::OnNMDblclkLresultados(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	NM_LISTVIEW* pNMListView = (NM_LISTVIEW*)pNMHDR;
@@ -503,7 +593,13 @@ void CBusquedaView::OnNMRclickLresultados(NMHDR *pNMHDR, LRESULT *pResult)
 	CNewMenu menu;
 	menu.CreatePopupMenu();
 
-	menu.AppendMenu(MF_STRING,2000,CLanguage::GetTraduccion(IDS_VERUSUARIO));
+	menu.AppendMenu(MF_STRING,2000,CLanguage::GetTraduccion(IDS_VERPERSONALES));
+	menu.AppendMenu(MF_STRING,2001,CLanguage::GetTraduccion(IDS_VERRESIDENCIA));
+	menu.AppendMenu(MF_STRING,2002,CLanguage::GetTraduccion(IDS_VEROFICINA));
+	menu.AppendMenu(MF_STRING,2003,CLanguage::GetTraduccion(IDS_VEREDUCACION));
+	menu.AppendMenu(MF_STRING,2004,CLanguage::GetTraduccion(IDS_VERSEGUIMIENTO));
+	menu.AppendMenu(MF_STRING,2005,CLanguage::GetTraduccion(IDS_VERGESTION));
+
 	menu.SetDefaultItem(2000, false);
 	menu.AppendMenu(MF_SEPARATOR);
 	m_LCBuscar.GetMenuContextual(&menu);
@@ -606,6 +702,7 @@ void CBusquedaView::OnStnClickedBusqueda() {
 
 void CBusquedaView::OnDestroy()
 {
+	m_pConector->KillQuery(-1, this);
 	CFormView::OnDestroy();
 	AfxGetApp()->WriteProfileInt("busqueda", "todos", m_CTodos.GetCheck());
 	AfxGetApp()->WriteProfileInt("busqueda", "todosa", m_CTodosA.GetCheck());
@@ -619,4 +716,20 @@ void CBusquedaView::OnChangeTodos() {
 void CBusquedaView::OnChangeTodosA() {
 
 	m_CTodos.SetCheck(m_CTodosA.GetCheck());
+}
+
+void CBusquedaView::OnBnClickedBcancelar()
+{
+	m_ENombre.Text="";
+	m_EApellido.Text="";
+	m_CBPais.SelectedIndex=0;
+	m_CBCiudad.SelectedIndex=0;
+	m_CBUniversidad.SelectedIndex=0;
+	m_CBArea.SelectedIndex=0;
+	m_EInstitucion.Text="";
+	m_CBTipo.SelectedIndex=0;
+	m_EBusqueda.Text="";
+	if(m_SAvanzado.IsCollapsed())
+		m_ENombre.SetFocus();
+	else m_EBusqueda.SetFocus();
 }

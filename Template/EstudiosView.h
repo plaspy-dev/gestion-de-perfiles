@@ -50,7 +50,6 @@ public:
 	CDateTimeCtrl m_EComienzo2;
 	CDateTimeCtrl m_DTFin2;
 	CEditXP m_ERevista;
-	CEditXP m_ETitulo;
 
 	// estudios en alemania.
 	CEditXP m_EAPregrado;
@@ -119,5 +118,21 @@ public:
 	CEditXP m_ETipo1;
 public:
 	CEditXP m_ETipo2;
+public:
+	CEditXP m_EBecarioOtra;
+public:
+	CComboBoxXP m_CBAPostArea;
+public:
+	CEditXP m_EAPostGrado;
+public:
+	CEditXP m_EAPostUniversidad;
+public:
+	CComboBoxXP m_CBOPostArea;
+public:
+	CEditXP m_EOPostgrado;
+public:
+	CEditXP m_EOPostUniversidad;
+public:
+	CEditXP m_EOPostPais;
 };
 

@@ -66,6 +66,8 @@ public:
 	LRESULT OnShowFallecido(WPARAM wParam, LPARAM lParam);
 	CUsuario *m_pUsuario;
 	LRESULT OnQueryUsuario(WPARAM wParam, LPARAM lParam);
+public:
+	CButton m_BJubilado;
 };
 
 

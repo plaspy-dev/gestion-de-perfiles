@@ -95,6 +95,17 @@ public:
 	afx_msg void OnChangeTodos();
 	afx_msg void OnChangeTodosA();
 	CString GetCampoReal(CString campo);
+public:
+	afx_msg void OnBnClickedBcancelar();
+public:
+	CButtonXP m_BCancelar;
+public:
+	CButtonXP m_BCancelar2;
+	void OnVerResidencia();
+	void OnVerOficina();
+	void OnVerEducacion();
+	void OnVerSeguimiento();
+	void OnVerGestion();
 };
 
 

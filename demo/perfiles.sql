@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS empresa (
 	website VARCHAR(255),
 	cargo VARCHAR(255),
 	tipo INT,
+	jubilado INT,
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
 
@@ -74,6 +75,7 @@ CREATE TABLE IF NOT EXISTS educacion (
 	tipo1 VARCHAR(255),
 	tipo2 VARCHAR(255),
 	becario INT,
+	becariootra VARCHAR(255),
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
 
@@ -91,6 +93,9 @@ CREATE TABLE IF NOT EXISTS estudios (
 	marea INT,
 	darea INT,
 	oarea INT,
+	postgrado VARCHAR(255),
+	postuniversidad VARCHAR(255),
+	postarea INT,
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
 
@@ -112,6 +117,10 @@ CREATE TABLE IF NOT EXISTS estudiosfuera (
 	marea INT,
 	darea INT,
 	oarea INT,
+	postgrado VARCHAR(255),
+	postuniversidad VARCHAR(255),
+	postarea INT,
+	postpais VARCHAR(255),
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
 

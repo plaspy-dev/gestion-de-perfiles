@@ -84,6 +84,17 @@
 #define IDS_AREANOENCONTRADA            164
 #define IDS_STRING165                   165
 #define IDS_ALIAS                       165
+#define IDS_VERPERSONALES               166
+#define IDS_VERRESIDENCIA               167
+#define IDS_VEROFICINA                  168
+#define IDS_VEREDUCACION                169
+#define IDS_VERSEGUIMIENTO              170
+#define IDS_VERGESTION                  171
+#define IDS_NACIONALIDAD                172
+#define IDS_PAISDERESIDENCIA            173
+#define IDS_CIUDADRESIDENCIA            174
+#define IDS_STRING175                   175
+#define IDS_POSTGRADO                   175
 #define IDC_EPKZ1                       1000
 #define IDC_EENCABEZADO                 1001
 #define IDC_ETITULO                     1002
@@ -100,6 +111,7 @@
 #define IDC_ECPOSTAL                    1011
 #define IDC_EPKZ                        1012
 #define IDC_EAAEREO                     1012
+#define IDC_BCANCELAR2                  1012
 #define IDC_ETELEFONO                   1013
 #define IDC_EFAX                        1014
 #define IDC_EEMAIL                      1015
@@ -163,8 +175,13 @@
 #define IDC_EAUNIVERSIDAD               1059
 #define IDC_EAMAESTRIA                  1060
 #define IDC_BBUSCAR                     1061
+#define IDC_EAAPOSTGRADO                1061
 #define IDC_LRESULTADOS                 1062
+#define IDC_EAPOSTUNIVERSIDAD           1062
+#define IDC_EFPOSTGRADO                 1063
+#define IDC_EFPOSTUNIVERSIDAD           1064
 #define IDC_SANOS                       1065
+#define IDC_EFPOSTPAIS                  1065
 #define IDC_CBECARIO                    1067
 #define IDC_CACTUALIZADO                1068
 #define IDC_CINVALIDO                   1069
@@ -186,6 +203,8 @@
 #define IDC_LAREAS                      1080
 #define IDC_CFOAREA                     1081
 #define IDC_SAVANZADO                   1081
+#define IDC_CAPOSTAREA                  1082
+#define IDC_CFPOSTAREA                  1083
 #define IDC_EINTITUCION                 1086
 #define IDC_EBUSQUEDA                   1088
 #define IDC_SAREA                       1090
@@ -202,7 +221,9 @@
 #define IDC_SVERSION                    1101
 #define IDB_BLOADING3                   1102
 #define IDB_BLOADING4                   1103
+#define IDC_CJUBILADO                   1103
 #define IDB_BLOADING5                   1104
+#define IDC_EBECARIOOTRA                1104
 #define IDB_BLOADING6                   1105
 #define IDB_BLOADING7                   1106
 #define IDB_BLOADING8                   1107
@@ -224,7 +245,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        132
 #define _APS_NEXT_COMMAND_VALUE         32776
-#define _APS_NEXT_CONTROL_VALUE         1103
+#define _APS_NEXT_CONTROL_VALUE         1105
 #define _APS_NEXT_SYMED_VALUE           144
 #endif
 #endif

@@ -68,7 +68,7 @@ Keep archived behavior and changes in separate commits. Retain external notices 
 
 ### History
 
-**June 14, 2007 source snapshot.** Add profile search and education views to move from a result to its records. Restore the English and German resource projects so interface labels can be translated separately. The author date is derived from the archive at noon UTC without an original timezone.
+**June 21, 2007 source snapshot.** Refine the education controls and their search fields so an operator can locate a profile using details from its education record. The author date is derived from the archive at noon UTC without an original timezone.
 
 ### Verification
 
@@ -149,7 +149,7 @@ Conserva el comportamiento histórico y las revisiones nuevas en commits separad
 
 ### Historial
 
-**Fuentes del 14 de junio de 2007.** Agrega vistas de búsqueda y estudios para pasar de un resultado a su ficha. Recupera los proyectos de recursos en inglés y alemán para traducir las etiquetas por separado. La fecha del autor se reconstruyó a mediodía UTC porque el respaldo no indica la zona horaria original.
+**Fuentes del 21 de junio de 2007.** Ajusta los controles de estudios y los campos de búsqueda para que el operador pueda localizar un perfil a partir de sus datos de formación. La fecha del autor se reconstruyó a mediodía UTC porque el respaldo no indica la zona horaria original.
 
 ### Verificación
 

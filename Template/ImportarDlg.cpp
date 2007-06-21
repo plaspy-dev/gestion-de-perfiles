@@ -217,7 +217,7 @@ CString CImportarDlg::GetArea(CString area) {
 
 CString CImportarDlg::ParseTablaEstudios(const CString &campo, CString valor) {
 
-	if(campo=="parea" || campo=="marea"  || campo=="darea" || campo=="oarea") {
+	if(campo=="parea" || campo=="marea"  || campo=="darea" || campo=="oarea" || campo=="postarea") {
 		return GetArea(valor);
 	}
 	return valor;
@@ -225,7 +225,7 @@ CString CImportarDlg::ParseTablaEstudios(const CString &campo, CString valor) {
 
 CString CImportarDlg::ParseTablaEstudiosFuera(const CString &campo, CString valor) {
 
-	if(campo=="parea" || campo=="marea" || campo=="darea" || campo=="oarea") {
+	if(campo=="parea" || campo=="marea" || campo=="darea" || campo=="oarea" || campo=="postarea") {
 		return GetArea(valor);
 	}
 	return valor;

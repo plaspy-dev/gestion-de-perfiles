@@ -43,6 +43,7 @@ void COficinaView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_ECARGO, m_ECargo);
 	DDX_Control(pDX, IDC_SFALLECIDO, m_SFallecido);
 	DDX_Control(pDX, IDC_CTIPO, m_CBTipo);
+	DDX_Control(pDX, IDC_CJUBILADO, m_BJubilado);
 }
 
 BEGIN_MESSAGE_MAP(COficinaView, CFormView)
@@ -134,6 +135,7 @@ void COficinaView::OnEnKillfocusEpkz1()
 	query+="departamento";
 	query+="cargo";
 	query+="tipo";
+	query+="jubilado";
 
 	m_pConector->Query(query.GetSelect("pkz='"+  m_EPKZ.Text + "'"), query_pkz, this);
 	((CMDIFrameWndXP *) AfxGetMainWnd())->SendMessageBroadCast(WM_INSERTPKZ, 0, (LPARAM)(const char *)m_EPKZ.Text);
@@ -162,6 +164,8 @@ void COficinaView::OnBnClickedBok()
 	query["cargo"]=m_ECargo.Text;
 	temp.Format("%d", m_CBTipo.SelectedData);
 	query["tipo"]= temp;
+	temp.Format("%d", m_BJubilado.GetCheck());
+	query["jubilado"]= temp;
 
 	m_pConector->Query(m_szCurrentPKZ.IsEmpty() ? query.GetInsert() : query.GetUpdate("pkz='"+ m_szCurrentPKZ + "'"));
 	CGestionView::Actualizar(m_pConector, m_EPKZ.Text);
@@ -183,6 +187,7 @@ void COficinaView::Clean() {
 	m_EWebSite.Text="";
 	m_ECargo.Text="";
 	m_CBTipo.SelectedIndex=-1;
+	m_BJubilado.SetCheck(0);
 	m_SFallecido.ShowWindow(SW_HIDE);
 }
 
@@ -214,6 +219,7 @@ LRESULT COficinaView::OnMySQLMessage(WPARAM wParam, LPARAM lParam) {
 				m_EPais.Text=mess["pais"];
 				m_ECargo.Text=mess["cargo"];
 				m_CBTipo.SelectedData= atoi(mess["tipo"]);
+				m_BJubilado.SetCheck(atoi(mess["jubilado"]));
 			} else if(mess.GetID()==query_tipos) {
 				m_CBTipo.SetItemData(m_CBTipo.AddString(mess["nombre"]), atoi(mess["id"]));
 			}

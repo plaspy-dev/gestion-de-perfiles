@@ -632,6 +632,11 @@ void CMainFrame::OnImportar() {
 		if(dlg.DoModal()==IDOK) {
 			CIndexarDlg idlg;
 			idlg.DoModal();
+
+			CString formato;
+			formato.Format(IDS_RESTART, CApplicacion::GetAppName());
+			MessageBox(formato);
+			PostMessage(WM_CLOSE);
 		}
 	}
 }

@@ -53,11 +53,7 @@
 
 #include <afxsock.h>		// Extensiones socket de MFC
 
-# define OrganizationExample23_VERSION "1.5.0.0 Beta"
-
-
-
-
+# define OrganizationExample23_VERSION "1.6 Beta"
 
 
 // #ifdef _UNICODE

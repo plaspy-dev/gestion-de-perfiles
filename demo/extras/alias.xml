@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <db>
   <clave>
     <tabla>usuario</tabla>
@@ -45,10 +45,7 @@
     <nombre>fallecido</nombre>
     <alias>Fallecido</alias>
   </clave>
-
-<!-- tabla residencia -->
-
-
+  <!-- tabla residencia -->
   <clave>
     <tabla>residencia</tabla>
     <nombre>pais</nombre>
@@ -109,11 +106,7 @@
     <nombre>website</nombre>
     <alias>Pagina Web Personal</alias>
   </clave>
-
-
-<!-- tabla empresa -->
-
-
+  <!-- tabla empresa -->
   <clave>
     <tabla>empresa</tabla>
     <nombre>nombre</nombre>
@@ -174,14 +167,17 @@
     <nombre>cargo</nombre>
     <alias>Cargo Oficina</alias>
   </clave>
- <clave>
+  <clave>
     <tabla>empresa</tabla>
     <nombre>tipo</nombre>
     <alias>Tipo de Institucion</alias>
   </clave>
-
-<!-- tabla educacion -->
-
+  <clave>
+    <tabla>empresa</tabla>
+    <nombre>jubilado</nombre>
+    <alias>Jubilado</alias>
+  </clave>
+  <!-- tabla educacion -->
   <clave>
     <tabla>educacion</tabla>
     <nombre>carrera</nombre>
@@ -237,11 +233,12 @@
     <nombre>becario</nombre>
     <alias>Becario DAAD</alias>
   </clave>
-
-
-<!-- tabla estudios -->
-
-
+  <clave>
+    <tabla>educacion</tabla>
+    <nombre>becariootra</nombre>
+    <alias>Becario Otra Institucion</alias>
+  </clave>
+  <!-- tabla estudios -->
   <clave>
     <tabla>estudios</tabla>
     <nombre>pregrado</nombre>
@@ -302,10 +299,22 @@
     <nombre>oarea</nombre>
     <alias>Otros Area</alias>
   </clave>
-
-
-<!-- tabla estudios fuera -->
-
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>postgrado</nombre>
+    <alias>Postgrado</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>postuniversidad</nombre>
+    <alias>Postgrado Universidad</alias>
+  </clave>
+  <clave>
+    <tabla>estudios</tabla>
+    <nombre>postarea</nombre>
+    <alias>Postgrado Area</alias>
+  </clave>
+  <!-- tabla estudios fuera -->
   <clave>
     <tabla>estudiosfuera</tabla>
     <nombre>pregrado</nombre>
@@ -386,11 +395,27 @@
     <nombre>oarea</nombre>
     <alias>Otros Area Fuera</alias>
   </clave>
-
-
-<!-- tabla seguimiento -->
-
-  
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>postgrado</nombre>
+    <alias>Postgrado Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>postuniversidad</nombre>
+    <alias>Postgrado Universidad Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>postpais</nombre>
+    <alias>Postgrado Pais Fuera</alias>
+  </clave>
+  <clave>
+    <tabla>estudiosfuera</tabla>
+    <nombre>postarea</nombre>
+    <alias>Postgrado Area Fuera</alias>
+  </clave>
+  <!-- tabla seguimiento -->
   <clave>
     <tabla>seguimiento</tabla>
     <nombre>primero</nombre>
@@ -431,9 +456,7 @@
     <nombre>respondio</nombre>
     <alias>Respondio</alias>
   </clave>
-
-<!-- tabla gestion -->
-
+  <!-- tabla gestion -->
   <clave>
     <tabla>gestion</tabla>
     <nombre>actualizado</nombre>
@@ -449,10 +472,9 @@
     <nombre>notas</nombre>
     <alias>Notas</alias>
   </clave>
-<clave>
+  <clave>
     <tabla>gestion</tabla>
     <nombre>ultimaactualizacion</nombre>
     <alias>Ultima Actualizacion</alias>
   </clave>
-
 </db>

@@ -183,6 +183,10 @@ BOOL CAboutDlg::OnInitDialog() {
 	texto.Format(CLanguage::GetTraduccion(IDS_SVERSION), CApplicacion::GetAppName(), OrganizationExample23_VERSION);
 	m_SVersion.SetWindowText(texto);
 	m_SLink.SetURL("http://mysql-demo.example.test");
+	/*CEnBitmap bitmap;
+	bitmap.CopyImage(CApplicacion::GetBitmap());
+	bitmap.ReplaceColor(RGB(255,0,255), ::GetSysColor(COLOR_3DFACE));
+	m_SLogo.SetBitmap((HBITMAP)bitmap.Detach());*/
 	m_SLogo.SetBitmap(CApplicacion::GetBitmap());
 	return TRUE;
 }
