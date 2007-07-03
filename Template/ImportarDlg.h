@@ -42,8 +42,7 @@ public:
 	CString ParseValor(const CString &tabla, const CString &campo, const CString &valor);
 	CString ParseTablaUsuario(const CString &campo, CString valor);
 	CString ParseTablaEmpresa(const CString &campo, CString valor);
-	CString ParseTablaEstudios(const CString &campo, CString valor);
-	CString ParseTablaEstudiosFuera(const CString &campo, CString valor);
+	CString ParseTablaEducacion(const CString &campo, CString valor);
 	CString GetArea(CString area);
 public:
 	afx_msg void OnTimer(UINT_PTR nIDEvent);

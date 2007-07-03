@@ -215,19 +215,10 @@ CString CImportarDlg::GetArea(CString area) {
 	return area;
 }
 
-CString CImportarDlg::ParseTablaEstudios(const CString &campo, CString valor) {
+CString CImportarDlg::ParseTablaEducacion(const CString &campo, CString valor) {
 
-	if(campo=="parea" || campo=="marea"  || campo=="darea" || campo=="oarea" || campo=="postarea") {
+	if(campo=="area") 
 		return GetArea(valor);
-	}
-	return valor;
-}
-
-CString CImportarDlg::ParseTablaEstudiosFuera(const CString &campo, CString valor) {
-
-	if(campo=="parea" || campo=="marea" || campo=="darea" || campo=="oarea" || campo=="postarea") {
-		return GetArea(valor);
-	}
 	return valor;
 }
 
@@ -278,10 +269,8 @@ CString CImportarDlg::ParseValor(const CString &tabla, const CString &campo, con
 		return ParseTablaUsuario(campo, valor);
 	} else if(tabla=="empresa") {
 		return ParseTablaEmpresa(campo, valor);
-	} else if(tabla=="estudios") {
-		return ParseTablaEstudios(campo, valor);
-	} else if(tabla=="estudiosfuera") {
-		return ParseTablaEstudiosFuera(campo, valor);
+	} else if(tabla=="educacion") {
+		return ParseTablaEducacion(campo, valor);
 	}
 	return valor;
 }

@@ -96,22 +96,6 @@ public:
 	CInfobarCtrl m_SFallecido;
 	void OnSize(UINT nType, int cx, int cy);
 	LRESULT OnShowFallecido(WPARAM wParam, LPARAM lParam);
-public:
-	CComboBoxXP m_CBPArea;
-public:
-	CComboBoxXP m_CBAMArea;
-public:
-	CComboBoxXP m_CBADArea;
-public:
-	CComboBoxXP m_CBAOArea;
-public:
-	CComboBoxXP m_CBOPArea;
-public:
-	CComboBoxXP m_CBOMArea;
-public:
-	CComboBoxXP m_CBODArea;
-public:
-	CComboBoxXP m_CBOOArea;
 	CUsuario *m_pUsuario;
 	LRESULT OnQueryUsuario(WPARAM wParam, LPARAM lParam);
 public:
@@ -121,18 +105,16 @@ public:
 public:
 	CEditXP m_EBecarioOtra;
 public:
-	CComboBoxXP m_CBAPostArea;
-public:
 	CEditXP m_EAPostGrado;
 public:
 	CEditXP m_EAPostUniversidad;
-public:
-	CComboBoxXP m_CBOPostArea;
 public:
 	CEditXP m_EOPostgrado;
 public:
 	CEditXP m_EOPostUniversidad;
 public:
 	CEditXP m_EOPostPais;
+public:
+	CComboBoxXP m_CBArea;
 };
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <db>
   <clave>
     <tabla>usuario</tabla>
@@ -45,7 +45,10 @@
     <nombre>fallecido</nombre>
     <alias>Fallecido</alias>
   </clave>
-  <!-- tabla residencia -->
+
+<!-- tabla residencia -->
+
+
   <clave>
     <tabla>residencia</tabla>
     <nombre>pais</nombre>
@@ -106,7 +109,11 @@
     <nombre>website</nombre>
     <alias>Pagina Web Personal</alias>
   </clave>
-  <!-- tabla empresa -->
+
+
+<!-- tabla empresa -->
+
+
   <clave>
     <tabla>empresa</tabla>
     <nombre>nombre</nombre>
@@ -167,17 +174,19 @@
     <nombre>cargo</nombre>
     <alias>Cargo Oficina</alias>
   </clave>
-  <clave>
+ <clave>
     <tabla>empresa</tabla>
     <nombre>tipo</nombre>
     <alias>Tipo de Institucion</alias>
   </clave>
-  <clave>
+ <clave>
     <tabla>empresa</tabla>
     <nombre>jubilado</nombre>
     <alias>Jubilado</alias>
   </clave>
-  <!-- tabla educacion -->
+
+<!-- tabla educacion -->
+
   <clave>
     <tabla>educacion</tabla>
     <nombre>carrera</nombre>
@@ -215,11 +224,6 @@
   </clave>
   <clave>
     <tabla>educacion</tabla>
-    <nombre>titulos</nombre>
-    <alias>Titulos Academicos</alias>
-  </clave>
-  <clave>
-    <tabla>educacion</tabla>
     <nombre>tipo1</nombre>
     <alias>Tipo de Beca 1</alias>
   </clave>
@@ -238,7 +242,12 @@
     <nombre>becariootra</nombre>
     <alias>Becario Otra Institucion</alias>
   </clave>
-  <!-- tabla estudios -->
+
+
+
+<!-- tabla estudios -->
+
+
   <clave>
     <tabla>estudios</tabla>
     <nombre>pregrado</nombre>
@@ -280,41 +289,23 @@
     <alias>Otros Universidad</alias>
   </clave>
   <clave>
-    <tabla>estudios</tabla>
-    <nombre>parea</nombre>
-    <alias>Pregrado Area</alias>
+    <tabla>educacion</tabla>
+    <nombre>area</nombre>
+    <alias> Area</alias>
   </clave>
-  <clave>
-    <tabla>estudios</tabla>
-    <nombre>marea</nombre>
-    <alias>Maestria Area</alias>
-  </clave>
-  <clave>
-    <tabla>estudios</tabla>
-    <nombre>darea</nombre>
-    <alias>Doctorado Area</alias>
-  </clave>
-  <clave>
-    <tabla>estudios</tabla>
-    <nombre>oarea</nombre>
-    <alias>Otros Area</alias>
-  </clave>
-  <clave>
+   <clave>
     <tabla>estudios</tabla>
     <nombre>postgrado</nombre>
     <alias>Postgrado</alias>
   </clave>
-  <clave>
+<clave>
     <tabla>estudios</tabla>
     <nombre>postuniversidad</nombre>
     <alias>Postgrado Universidad</alias>
   </clave>
-  <clave>
-    <tabla>estudios</tabla>
-    <nombre>postarea</nombre>
-    <alias>Postgrado Area</alias>
-  </clave>
-  <!-- tabla estudios fuera -->
+
+<!-- tabla estudios fuera -->
+
   <clave>
     <tabla>estudiosfuera</tabla>
     <nombre>pregrado</nombre>
@@ -375,47 +366,31 @@
     <nombre>opais</nombre>
     <alias>Otros Pais Fuera</alias>
   </clave>
-  <clave>
-    <tabla>estudiosfuera</tabla>
-    <nombre>parea</nombre>
-    <alias>Pais Area Fuera</alias>
-  </clave>
-  <clave>
-    <tabla>estudiosfuera</tabla>
-    <nombre>marea</nombre>
-    <alias>Maestria Area Fuera</alias>
-  </clave>
-  <clave>
-    <tabla>estudiosfuera</tabla>
-    <nombre>darea</nombre>
-    <alias>Doctorado Area Fuera</alias>
-  </clave>
-  <clave>
-    <tabla>estudiosfuera</tabla>
-    <nombre>oarea</nombre>
-    <alias>Otros Area Fuera</alias>
-  </clave>
-  <clave>
+  
+  
+  
+  
+<clave>
     <tabla>estudiosfuera</tabla>
     <nombre>postgrado</nombre>
     <alias>Postgrado Fuera</alias>
   </clave>
-  <clave>
+<clave>
     <tabla>estudiosfuera</tabla>
     <nombre>postuniversidad</nombre>
     <alias>Postgrado Universidad Fuera</alias>
   </clave>
-  <clave>
+<clave>
     <tabla>estudiosfuera</tabla>
     <nombre>postpais</nombre>
     <alias>Postgrado Pais Fuera</alias>
   </clave>
-  <clave>
-    <tabla>estudiosfuera</tabla>
-    <nombre>postarea</nombre>
-    <alias>Postgrado Area Fuera</alias>
-  </clave>
-  <!-- tabla seguimiento -->
+
+
+
+<!-- tabla seguimiento -->
+
+  
   <clave>
     <tabla>seguimiento</tabla>
     <nombre>primero</nombre>
@@ -456,7 +431,9 @@
     <nombre>respondio</nombre>
     <alias>Respondio</alias>
   </clave>
-  <!-- tabla gestion -->
+
+<!-- tabla gestion -->
+
   <clave>
     <tabla>gestion</tabla>
     <nombre>actualizado</nombre>
@@ -472,9 +449,10 @@
     <nombre>notas</nombre>
     <alias>Notas</alias>
   </clave>
-  <clave>
+<clave>
     <tabla>gestion</tabla>
     <nombre>ultimaactualizacion</nombre>
     <alias>Ultima Actualizacion</alias>
   </clave>
+
 </db>

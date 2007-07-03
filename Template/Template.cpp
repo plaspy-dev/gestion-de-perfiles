@@ -149,7 +149,7 @@ public:
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
-	CBitmapPicture m_SLogo;
+	CKCSideBannerWnd m_banner;
 };
 
 CAboutDlg::CAboutDlg() : CDialogXP(CAboutDlg::IDD)
@@ -161,7 +161,6 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 	CDialogXP::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_SVERSION, m_SVersion);
 	DDX_Control(pDX, IDC_SLINKEX, m_SLink);
-	DDX_Control(pDX, IDC_SLOGO1, m_SLogo);
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogXP)
@@ -174,20 +173,26 @@ void CTemplateApp::OnAppAbout()
 	aboutDlg.DoModal();
 }
 
-
 // Controladores de mensaje de CTemplateApp
 BOOL CAboutDlg::OnInitDialog() {
 
 	CDialogXP::OnInitDialog();
 	CString texto;
-	texto.Format(CLanguage::GetTraduccion(IDS_SVERSION), CApplicacion::GetAppName(), OrganizationExample23_VERSION);
+	texto.Format(CLanguage::GetTraduccion(IDS_SVERSION), OrganizationExample23_VERSION);
 	m_SVersion.SetWindowText(texto);
 	m_SLink.SetURL("http://mysql-demo.example.test");
-	/*CEnBitmap bitmap;
+
+	m_banner.Attach(this, KCSB_ATTACH_TOP);
+	m_banner.SetFillFlag(KCSB_FILL_TEXTURE);
+	m_banner.SetSize(80);
+	
+	CEnBitmap bitmap;
 	bitmap.CopyImage(CApplicacion::GetBitmap());
-	bitmap.ReplaceColor(RGB(255,0,255), ::GetSysColor(COLOR_3DFACE));
-	m_SLogo.SetBitmap((HBITMAP)bitmap.Detach());*/
-	m_SLogo.SetBitmap(CApplicacion::GetBitmap());
+	CRect rect;
+	m_banner.GetWindowRect(rect);
+	bitmap.ResizeImage(rect.Width(),rect.Height());
+	m_banner.SetTexture((HBITMAP)bitmap.Detach());
+
 	return TRUE;
 }
 

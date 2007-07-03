@@ -16,6 +16,7 @@
 # include "ImportarDlg.h"
 # include "IndexarDlg.h"
 # include "TipoView.h"
+# include "FlashView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -23,7 +24,7 @@
 
 # define	ANIMATION_TIMER			300
 # define	TIMER_EVENT				32000
-
+# define	TIMER_FLASH				200
 
 // CMainFrame
 
@@ -65,6 +66,7 @@ CMainFrame::CMainFrame()
 	m_pUsuario= NULL;
 	m_nAnimation=0;
 	m_bLoad=false;
+	m_pDocTemplate=NULL;
 }
 
 CMainFrame::~CMainFrame()
@@ -217,19 +219,29 @@ void CMainFrame::ResetToolbars() {
 void CMainFrame::LoadState() {
 
 	CWaitCursor wait;
-
 #ifndef _DEBUG
 	CString temp="CBusquedaView,CTemplateView,CResidenciaView,COficinaView,CEstudiosView,CSeguimientoView,CGestionView,CAreasView,CTipoView";
+	/*if(!AfxGetApp()->GetProfileInt("bienvenido", "noinicio", 0)) {
+		temp="CFlashView," + temp;
+		AfxGetApp()->WriteProfileString("control", "focus", "CFlashView");
+	}*/
 	AfxGetApp()->WriteProfileString("control", "classname", temp);
 #endif
-	
 	LoadBarState("barras\\Barras");
 	m_pNavBar.LoadStateBar("Barras\\Barras");
 
 	if( !AfxGetApp()->GetProfileInt("barras\\Barras", "store",0)) {
 		m_pNavBar.ShowWindow(SW_SHOW);
 	}
+#ifndef _DEBUG
+	// m_pDocTemplate->OpenDocumentFile(NULL);
+#else 
+	m_pDocTemplate->OpenDocumentFile(NULL);
+#endif
 	CMDIFrameWndXP::LoadState();
+#ifndef _DEBUG
+	// SetTimer(TIMER_FLASH, AfxGetApp()->GetProfileInt("bienvenido","timeout",5000), NULL);
+#endif
 }
 
 void CMainFrame::SaveState() {
@@ -337,6 +349,14 @@ bool CMainFrame::LoadDocumentos() {
 		LoadDocument(mimenu, hRoot, CLanguage::GetTraduccion(IDS_AREAS), IDR_TemplateTYPE ,RUNTIME_CLASS(CAreasView));
 		LoadDocument(mimenu, hRoot, CLanguage::GetTraduccion(IDS_TIPOS), IDR_TemplateTYPE ,RUNTIME_CLASS(CTipoView));
 	}
+
+	CWinApp* pApp = AfxGetApp();
+	ASSERT(pApp != NULL);
+	m_pDocTemplate= new CMultiDocTemplateXP(IDR_TemplateTYPE,
+		RUNTIME_CLASS(CComponentesDoc),
+		RUNTIME_CLASS(CMDIChildWndXP),
+		RUNTIME_CLASS(CFlashView));
+	pApp->AddDocTemplate(m_pDocTemplate);
 
 	m_pMenus.Add(CLanguage::GetTraduccion(IDS_DATOS), (DWORD)mimenu);
 
@@ -559,6 +579,9 @@ void CMainFrame::OnTimer(UINT nIDEvent)
 				m_nInactivo=0;
 			}
 		}
+	} else if(nIDEvent==TIMER_FLASH) {
+		KillTimer(TIMER_FLASH);
+		OnTreeNavegador(100, (LPARAM)(const char *)"CBusquedaView");
 	}
 	CMDIFrameWndXP::OnTimer(nIDEvent);
 }

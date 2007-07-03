@@ -93,8 +93,9 @@
 #define IDS_NACIONALIDAD                172
 #define IDS_PAISDERESIDENCIA            173
 #define IDS_CIUDADRESIDENCIA            174
-#define IDS_STRING175                   175
 #define IDS_POSTGRADO                   175
+#define IDD_FLASHVIEW                   176
+#define IDS_BIENVENIDO                  176
 #define IDC_EPKZ1                       1000
 #define IDC_EENCABEZADO                 1001
 #define IDC_ETITULO                     1002
@@ -203,8 +204,6 @@
 #define IDC_LAREAS                      1080
 #define IDC_CFOAREA                     1081
 #define IDC_SAVANZADO                   1081
-#define IDC_CAPOSTAREA                  1082
-#define IDC_CFPOSTAREA                  1083
 #define IDC_EINTITUCION                 1086
 #define IDC_EBUSQUEDA                   1088
 #define IDC_SAREA                       1090
@@ -226,8 +225,11 @@
 #define IDC_EBECARIOOTRA                1104
 #define IDB_BLOADING6                   1105
 #define IDB_BLOADING7                   1106
+#define IDC_CNOMOSTRAR                  1106
 #define IDB_BLOADING8                   1107
+#define IDC_SHOCKWAVEFLASH1             1107
 #define IDB_BLOADING9                   1108
+#define IDC_SICONO                      1108
 #define IDB_BLOADING10                  1109
 #define IDB_BLOADING11                  1110
 #define IDB_BLOADING12                  1111
@@ -243,9 +245,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        132
+#define _APS_NEXT_RESOURCE_VALUE        133
 #define _APS_NEXT_COMMAND_VALUE         32776
-#define _APS_NEXT_CONTROL_VALUE         1105
-#define _APS_NEXT_SYMED_VALUE           144
+#define _APS_NEXT_CONTROL_VALUE         1109
+#define _APS_NEXT_SYMED_VALUE           177
 #endif
 #endif

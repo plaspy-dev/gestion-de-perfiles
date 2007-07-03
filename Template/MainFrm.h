@@ -21,6 +21,7 @@ private:
 	bool	LoadDocumentos();
 protected:
 	CToolBarXP		m_wndToolBar;
+	CMultiDocTemplateXP *m_pDocTemplate;
 // Atributos
 public:
 

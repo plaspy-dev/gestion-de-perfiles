@@ -19,6 +19,7 @@ Keep a contact, residential address, work history and studies in one Windows rec
 - Open **Personales**, **Residencia** or **Oficina** in the Navigator to view the corresponding part of a profile.
 - Use **Herramientas → Servidores** to point the app at a separate MySQL test catalog.
 - With an administrator account in the test database, choose **Archivo → Importar** to select a CSV file, apply the column mapping and rebuild the search index. Copy `demo/extras/alias.xml` to `bin/Release/extras/alias.xml` before importing fictional records or enabling the **Todo** search columns. The supplied account has the consultation role.
+- **Archivo → Administrador** is enabled for group 2 only when the app uses its embedded database. The search demo uses a separate MySQL server. The embedded administrator dialog requires an operator-provided `PERFILES_EMBEDDED_ADMIN_PASSWORD` in the desktop process environment. It rejects elevation when unset. The external MySQL login still uses its own account and group.
 
 ### Requirements
 
@@ -57,6 +58,7 @@ docker compose -f demo/compose.yaml down --volumes
 - `demo/compose.yaml` starts the sample database. `demo/ProbarEscritorio.ps1` launches the app.
 - `english/english.vcxproj` and `german/german.vcxproj` build the translated resource DLLs.
 - `demo/extras/alias.xml` maps CSV column labels to database fields for the importer.
+- `demo/extras/alias-archivada.xml` preserves the July mapping. The demo `alias.xml` uses the single education area column in the July database schema.
 
 ### Support
 
@@ -68,7 +70,7 @@ Keep archived behavior and changes in separate commits. Retain external notices 
 
 ### History
 
-**June 21, 2007 source snapshot.** Refine the education controls and their search fields so an operator can locate a profile using details from its education record. The author date is derived from the archive at noon UTC without an original timezone.
+**July 2007 source snapshot.** The July edition simplifies the education view, adjusts search and import forms, and adds an optional Flash view to the historical desktop shell. The author date is derived from the archive at noon UTC without an original timezone.
 
 ### Verification
 
@@ -98,6 +100,7 @@ Reúne contacto, residencia, información de trabajo y estudios en una ficha de 
 - Abre **Personales**, **Residencia** u **Oficina** en el Navegador para consultar los datos de ese apartado.
 - Usa **Herramientas → Servidores** para dirigir el programa a un catálogo MySQL de prueba.
 - Con una cuenta de administración en la base de prueba, abre **Archivo → Importar** para elegir el CSV, aplicar la relación de columnas e indexar los registros. Copia `demo/extras/alias.xml` a `bin/Release/extras/alias.xml` antes de importar registros ficticios o activar las columnas de búsqueda **Todo**. La cuenta de ejemplo tiene el perfil de consulta.
+- **Archivo → Administrador** se habilita para el grupo 2 cuando la aplicación usa su base incrustada. La demostración de búsqueda usa un MySQL separado. El diálogo de administrador incrustado requiere `PERFILES_EMBEDDED_ADMIN_PASSWORD` configurada por el operador en el entorno del proceso. Sin ese valor rechaza la elevación. El ingreso a MySQL externo conserva su cuenta y grupo propios.
 
 ### Requisitos
 
@@ -138,6 +141,7 @@ docker compose -f demo/compose.yaml down --volumes
 - `demo/compose.yaml` inicia la base de ejemplo. `demo/ProbarEscritorio.ps1` abre el programa.
 - `english/english.vcxproj` y `german/german.vcxproj` compilan las DLL de recursos traducidos.
 - `demo/extras/alias.xml` vincula las etiquetas de las columnas del CSV con los campos de la base para importar.
+- `demo/extras/alias-archivada.xml` conserva la correspondencia de julio. El `alias.xml` de ejemplo usa la columna única de área de estudios del esquema de julio.
 
 ### Soporte
 
@@ -149,7 +153,7 @@ Conserva el comportamiento histórico y las revisiones nuevas en commits separad
 
 ### Historial
 
-**Fuentes del 21 de junio de 2007.** Ajusta los controles de estudios y los campos de búsqueda para que el operador pueda localizar un perfil a partir de sus datos de formación. La fecha del autor se reconstruyó a mediodía UTC porque el respaldo no indica la zona horaria original.
+**Fuentes de julio de 2007.** La edición de julio simplifica la vista de estudios, ajusta las pantallas de búsqueda e importación y agrega una vista Flash opcional a la interfaz histórica. La fecha del autor se reconstruyó a mediodía UTC porque el respaldo no indica la zona horaria original.
 
 ### Verificación
 

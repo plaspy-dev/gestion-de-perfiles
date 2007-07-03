@@ -100,30 +100,12 @@ CString CBusquedaView::GetCampoReal(CString campo) {
 		campo.Format("IF(usuario.correspondencia=1, '%s', IF(usuario.correspondencia=2, '%s', ''))", CLanguage::GetTraduccion(IDS_OFICINA), CLanguage::GetTraduccion(IDS_CASA));
 	} else if(campo=="empresa.tipo") {
 		campo="tipoempresa.nombre";
-	} else if(campo=="estudios.parea") {
-		campo="estudiosparea.nombre";
-	} else if(campo=="estudios.marea") {
-		campo="estudiosmarea.nombre";
-	} else if(campo=="estudios.darea") {
-		campo="estudiosdarea.nombre";
-	} else if(campo=="estudios.oarea") {
-		campo="estudiosoarea.nombre";
-	} else if(campo=="estudiosfuera.parea") {
-		campo="estudiospareaf.nombre";
-	} else if(campo=="estudiosfuera.marea") {
-		campo="estudiosmareaf.nombre";
-	} else if(campo=="estudiosfuera.darea") {
-		campo="estudiosdareaf.nombre";
-	} else if(campo=="estudiosfuera.oarea") {
-		campo="estudiosoareaf.nombre";
+	} else if(campo=="educacion.area") {
+		campo="areaedu.nombre";
 	} else if(campo=="usuario.fallecido") {
 		campo.Format("IF(usuario.fallecido=1, 'X','')");
 	} else if(campo=="educacion.becario") {
 		campo.Format("IF(educacion.becario=1, 'X','')");
-	} else if(campo=="estudios.postarea") {
-		campo="estudiospostarea.nombre";
-	} else if(campo=="estudiosfuera.postarea") {
-		campo="estudiospostareaf.nombre";
 	}
 	return campo;
 }
@@ -181,18 +163,9 @@ void CBusquedaView::OnBuscar(bool avanzado, bool todo/*=false*/) {
 			MessageBox(szValue, NULL, MB_ICONERROR);
 			return;
 		}
-		left+=" LEFT JOIN shared AS tipoempresa ON (empresa.tipo=tipoempresa.id) ";
-		left+=" LEFT JOIN shared AS estudiosparea ON (estudios.parea=estudiosparea.id) ";
-		left+=" LEFT JOIN shared AS estudiosmarea ON (estudios.marea=estudiosmarea.id) ";
-		left+=" LEFT JOIN shared AS estudiosdarea ON (estudios.darea=estudiosdarea.id) ";
-		left+=" LEFT JOIN shared AS estudiosoarea ON (estudios.oarea=estudiosoarea.id) ";
-		left+=" LEFT JOIN shared AS estudiospostarea ON (estudios.postarea=estudiospostarea.id) ";
 
-		left+=" LEFT JOIN shared AS estudiospareaf ON (estudiosfuera.parea=estudiospareaf.id) ";
-		left+=" LEFT JOIN shared AS estudiosmareaf ON (estudiosfuera.marea=estudiosmareaf.id) ";
-		left+=" LEFT JOIN shared AS estudiosdareaf ON (estudiosfuera.darea=estudiosdareaf.id) ";
-		left+=" LEFT JOIN shared AS estudiosoareaf ON (estudiosfuera.oarea=estudiosoareaf.id) ";
-		left+=" LEFT JOIN shared AS estudiospostareaf ON (estudiosfuera.postarea=estudiospostareaf.id) ";
+		left+=" LEFT JOIN shared AS tipoempresa ON (empresa.tipo=tipoempresa.id) ";
+		left+=" LEFT JOIN shared AS areaedu ON (educacion.area=areaedu.id) ";
 
 	} else {
 
@@ -331,13 +304,10 @@ void CBusquedaView::OnBuscar(bool avanzado, bool todo/*=false*/) {
 
 		if(m_CBArea.SelectedIndex!=-1 && m_CBArea.SelectedData!=-1) {
 
-			if(left.Find("LEFT JOIN estudios ON (usuario.pkz=estudios.pkz)")==-1)
-				left+=" LEFT JOIN estudios ON (usuario.pkz=estudios.pkz) ";
-			if(left.Find("LEFT JOIN estudiosfuera ON (usuario.pkz=estudiosfuera.pkz)")==-1)
-				left+=" LEFT JOIN estudiosfuera ON (usuario.pkz=estudiosfuera.pkz) ";
-
-			area=" (estudios.parea=$$ OR estudios.marea=$$ OR estudios.darea=$$ OR estudios.oarea=$$ OR estudios.postarea=$$ ";
-			area+=" OR estudiosfuera.parea=$$ OR estudiosfuera.marea=$$ OR estudiosfuera.darea=$$ OR estudiosfuera.oarea=$$ OR estudiosfuera.postarea=$$) ";
+			if(left.Find("LEFT JOIN educacion ON (usuario.pkz=educacion.pkz)")==-1)
+				left+=" LEFT JOIN educacion ON (usuario.pkz=educacion.pkz) ";
+			
+			area=" educacion.area=$$ ";
 			CString data;
 			data.Format("%d", m_CBArea.SelectedData);
 			area.Replace("$$", data);

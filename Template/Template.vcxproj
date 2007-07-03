@@ -132,6 +132,7 @@
     <ClCompile Include="errorreport\GetWinVer.cpp" />
     <ClCompile Include="errorreport\MiniVersion.cpp" />
     <ClCompile Include="EstudiosView.cpp" />
+    <ClCompile Include="FlashView.cpp" />
     <ClCompile Include="GestionView.cpp" />
     <ClCompile Include="ImportarDlg.cpp" />
     <ClCompile Include="IndexarDlg.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="errorreport\GetWinVer.h" />
     <ClInclude Include="errorreport\MiniVersion.h" />
     <ClInclude Include="EstudiosView.h" />
+    <ClInclude Include="FlashView.h" />
     <ClInclude Include="GestionView.h" />
     <ClInclude Include="ImportarDlg.h" />
     <ClInclude Include="IndexarDlg.h" />

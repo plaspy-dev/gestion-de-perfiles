@@ -71,11 +71,11 @@ CREATE TABLE IF NOT EXISTS educacion (
 	comienzob2 DATE,
 	finb2 DATE,
 	revista VARCHAR(255),
-	titulos VARCHAR(255),
 	tipo1 VARCHAR(255),
 	tipo2 VARCHAR(255),
 	becario INT,
 	becariootra VARCHAR(255),
+	area INT,
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
 
@@ -89,13 +89,8 @@ CREATE TABLE IF NOT EXISTS estudios (
 	duniversidad VARCHAR(255),
 	otros VARCHAR(255),
 	ouniversidad VARCHAR(255),
-	parea INT,
-	marea INT,
-	darea INT,
-	oarea INT,
 	postgrado VARCHAR(255),
 	postuniversidad VARCHAR(255),
-	postarea INT,
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
 
@@ -113,13 +108,8 @@ CREATE TABLE IF NOT EXISTS estudiosfuera (
 	otros VARCHAR(255),
 	ouniversidad VARCHAR(255),
 	opais VARCHAR(255),
-	parea INT,
-	marea INT,
-	darea INT,
-	oarea INT,
 	postgrado VARCHAR(255),
 	postuniversidad VARCHAR(255),
-	postarea INT,
 	postpais VARCHAR(255),
 	PRIMARY KEY(pkz)
 ) ENGINE=MyISAM;
