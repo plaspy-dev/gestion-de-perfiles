@@ -37,6 +37,8 @@ msbuild gestion-de-perfiles.sln /m:3 /nr:false /p:Configuration=Release /p:Platf
 Copy-Item -LiteralPath (Join-Path $sdk 'libmysql.dll') -Destination 'bin/Release/libmysql.dll'
 ```
 
+The optional CSV mapping goes beside the executable in its `extras/` folder.
+
 ### Usage
 
 Run the launcher on a Windows test account without settings for this application in the current user or machine registry. It creates and removes the temporary application keys.
@@ -70,7 +72,7 @@ Keep archived behavior and changes in separate commits. Retain external notices 
 
 ### History
 
-**July 2007 source snapshot.** The July edition simplifies the education view, adjusts search and import forms, and adds an optional Flash view to the historical desktop shell. The author date is derived from the archive at noon UTC without an original timezone.
+**17 November 2026.** Document the local source folders and the relative location of the CSV mapping. This documentation describes the July 2007 sources.
 
 ### Verification
 
@@ -120,6 +122,8 @@ msbuild gestion-de-perfiles.sln /m:3 /nr:false /p:Configuration=Release /p:Platf
 Copy-Item -LiteralPath (Join-Path $sdk 'libmysql.dll') -Destination 'bin/Release/libmysql.dll'
 ```
 
+La correspondencia opcional del CSV va junto al ejecutable en su carpeta `extras/`.
+
 ### Uso
 
 Ejecuta el lanzador en una cuenta de prueba de Windows sin configuración previa de esta aplicación en el Registro del usuario ni del equipo. El lanzador crea y retira las claves temporales del programa.
@@ -153,7 +157,7 @@ Conserva el comportamiento histórico y las revisiones nuevas en commits separad
 
 ### Historial
 
-**Fuentes de julio de 2007.** La edición de julio simplifica la vista de estudios, ajusta las pantallas de búsqueda e importación y agrega una vista Flash opcional a la interfaz histórica. La fecha del autor se reconstruyó a mediodía UTC porque el respaldo no indica la zona horaria original.
+**17 de noviembre de 2026.** Documenta las carpetas de fuentes incluidas y la ruta de la correspondencia CSV. La documentación corresponde a las fuentes de julio de 2007.
 
 ### Verificación
 
