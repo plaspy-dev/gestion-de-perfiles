@@ -61,6 +61,7 @@ docker compose -f demo/compose.yaml down --volumes
 - `english/english.vcxproj` and `german/german.vcxproj` build the translated resource DLLs.
 - `demo/extras/alias.xml` maps CSV column labels to database fields for the importer.
 - `demo/extras/alias-archivada.xml` preserves the July mapping. The demo `alias.xml` uses the single education area column in the July database schema.
+- `docs/media/` contains the verified search screenshot and animation.
 
 ### Support
 
@@ -74,9 +75,15 @@ Keep archived behavior and changes in separate commits. Retain external notices 
 
 **17 November 2026.** Document the local source folders and the relative location of the CSV mapping. This documentation describes the July 2007 sources.
 
+**18 November 2026.** Add the screenshot and animation from the verified desktop search.
+
 ### Verification
 
 Build and test on 19 November 2026 with MSBuild 18.11.1.51303, MSVC 14.51.36263 (v145) in Release Win32, the MySQL 5.0.16 x86 client and MySQL 5.7.44 in Docker. The app opens the fictional login and returns the DEMO-501 profile from the local database. MSBuild returned exit 0. The commands are in Getting started and Usage. The run exercised login and search. CSV import and Flash rendering were outside this execution. The sample uses 10 tables from the archived application schema plus the connector login tables.
+
+![Search results with the fictional profile Alicia Ejemplo, DEMO-501](docs/media/busqueda.png)
+
+![The search form and then the grid with the fictional result row](docs/media/busqueda.gif)
 
 ### License
 
@@ -146,6 +153,7 @@ docker compose -f demo/compose.yaml down --volumes
 - `english/english.vcxproj` y `german/german.vcxproj` compilan las DLL de recursos traducidos.
 - `demo/extras/alias.xml` vincula las etiquetas de las columnas del CSV con los campos de la base para importar.
 - `demo/extras/alias-archivada.xml` conserva la correspondencia de julio. El `alias.xml` de ejemplo usa la columna única de área de estudios del esquema de julio.
+- `docs/media/` contiene la captura y la animación de la búsqueda verificada.
 
 ### Soporte
 
@@ -159,9 +167,15 @@ Conserva el comportamiento histórico y las revisiones nuevas en commits separad
 
 **17 de noviembre de 2026.** Documenta las carpetas de fuentes incluidas y la ruta de la correspondencia CSV. La documentación corresponde a las fuentes de julio de 2007.
 
+**18 de noviembre de 2026.** Agrega la captura y la animación de la búsqueda comprobada en el escritorio.
+
 ### Verificación
 
 Compilación y prueba del 19 de noviembre de 2026 con MSBuild 18.11.1.51303, MSVC 14.51.36263 (v145) en Release Win32, el cliente MySQL 5.0.16 x86 y MySQL 5.7.44 en Docker. La aplicación inicia sesión con la cuenta ficticia y devuelve el perfil DEMO-501 de la base local. MSBuild terminó con código 0. Los comandos están en Cómo empezar y Uso. La ejecución comprobó el ingreso y la búsqueda. La importación CSV y Flash quedaron fuera de esa prueba. El ejemplo usa 10 tablas del esquema archivado más las tablas de ingreso del conector.
+
+![Resultados de búsqueda con el perfil ficticio Alicia Ejemplo, DEMO-501](docs/media/busqueda.png)
+
+![Formulario de búsqueda seguido de la tabla con el resultado ficticio](docs/media/busqueda.gif)
 
 ### Licencia
 
